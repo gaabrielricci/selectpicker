@@ -5,10 +5,10 @@ a simple way to create a selector with predefined options for the user
 ## Images
 
 <div style="display: flex;">
-<img src="https://github.com/gaabrielricci/selectpicker/blob/main/assets/1.png" alt="Start" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://github.com/gaabrielricci/selectpicker/blob/main/assets/2.png" alt="All" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://github.com/gaabrielricci/selectpicker/blob/main/assets/3.png" alt="Filter" style="flex: 1; padding: 10px;" width="324" height="720">
-<img src="https://github.com/gaabrielricci/selectpicker/blob/main/assets/4.png" alt="Select" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/selectpicker/1.png" alt="Start" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/selectpicker/2.png" alt="All" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/selectpicker/3.png" alt="Filter" style="flex: 1; padding: 10px;" width="324" height="720">
+<img src="https://riccimobile.com.br/github/flutter/selectpicker/4.png" alt="Select" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
 
 ## Getting started
