@@ -30,7 +30,7 @@ class CardSelectPicker extends StatelessWidget {
               )
             ],
           ),
-          Divider(height: 10)
+          const Divider(height: 10)
         ],
       )),
     );
