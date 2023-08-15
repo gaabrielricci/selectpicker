@@ -4,8 +4,9 @@ import 'package:selectpicker/models/select_picker_iten.dart';
 class SelectPickerViewModel with ChangeNotifier {
   TextEditingController searchController = TextEditingController();
   String _selectedItem = "";
-  String? initialItem;
   String? searchError;
+  bool selectFirst = false;
+  bool showId = false;
   List<SelectPickerIten> _listToShow = [];
   List<SelectPickerIten> _originalList = [];
 
@@ -31,28 +32,21 @@ class SelectPickerViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  _selectInitial() {
-    for (SelectPickerIten item in _listToShow) {
+  selectInitial({String? initialItem}) {
+    for (SelectPickerIten item in originalList) {
       if (item.id == initialItem) {
-        selectedItem = item.title;
+        selectedItem = "${showId ? "${item.id} - " : ""}${item.title}";
       }
     }
-    initialItem = null;
   }
 
   set listToShow(List<SelectPickerIten> list) {
     _listToShow = list;
-    if (initialItem != null) {
-      _selectInitial();
-    }
     notifyListeners();
   }
 
   set listToShowDoNotNotify(List<SelectPickerIten> list) {
     _listToShow = list;
-    if (initialItem != null) {
-      _selectInitial();
-    }
   }
 
   List<SelectPickerIten> get listToShow => _listToShow;
@@ -60,24 +54,27 @@ class SelectPickerViewModel with ChangeNotifier {
   set originalList(List<SelectPickerIten> list) {
     _originalList = list;
     _listToShow = list;
-    if (initialItem != null) {
-      _selectInitial();
-    }
+    _selectFirst();
   }
 
   set originalListDoNotNotify(List<SelectPickerIten> list) {
     _originalList = list;
     listToShowDoNotNotify = list;
-    if (initialItem != null) {
-      _selectInitial();
-    }
+    _selectFirst();
   }
 
   List<SelectPickerIten> get originalList => _originalList;
 
+  _selectFirst() {
+    if (selectFirst) {
+      if (originalList.isNotEmpty) {
+        _selectedItem = "${showId ? "${originalList[0].id} - " : ""}${originalList[0].title}";
+      }
+    }
+  }
+
   reset() {
     searchController = TextEditingController();
-    initialItem = "";
     searchError = null;
     listToShow = originalList;
   }

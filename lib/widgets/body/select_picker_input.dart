@@ -11,18 +11,14 @@ class SelectPickerInput extends StatefulWidget {
   const SelectPickerInput({
     super.key,
     required this.list,
-    required this.maxHeight,
     required this.selectPickerInputStyle,
     required this.selectFirst,
     required this.onSelect,
     required this.hint,
     required this.selectPickerBottomSheetStyle,
     required this.selectPickerInputSearchStyle,
-    this.radiusPicker,
-    this.backgroundColor,
     this.hintSearch,
     this.showId,
-    this.initialText,
     this.onSearch,
     this.onClose,
     this.disabled,
@@ -30,9 +26,6 @@ class SelectPickerInput extends StatefulWidget {
     this.inputError,
   });
 
-  final double? radiusPicker;
-  final double? maxHeight;
-  final Color? backgroundColor;
   final String? inputError;
   final String? hintSearch;
   final String hint;
@@ -41,7 +34,6 @@ class SelectPickerInput extends StatefulWidget {
   final Function(SelectPickerIten) onSelect;
   final Future<List<SelectPickerIten>> Function(String? text)? onSearch;
   final Function()? onClose;
-  final String? initialText;
   final bool? disabled;
   final List<SelectPickerIten> list;
   final String? initialItem;
@@ -58,10 +50,23 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   @override
   void initState() {
-    Provider.of<SelectPickerViewModel>(context, listen: false).originalListDoNotNotify = widget.list;
+    _init();
+    super.initState();
+  }
+
+  _init() {
     _animationController = BottomSheet.createAnimationController(this);
 
-    super.initState();
+    Provider.of<SelectPickerViewModel>(context, listen: false).selectFirst = widget.selectFirst;
+    Provider.of<SelectPickerViewModel>(context, listen: false).showId = widget.showId == true;
+    Provider.of<SelectPickerViewModel>(context, listen: false).originalListDoNotNotify = widget.list;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.selectFirst) {
+        widget.onSelect(Provider.of<SelectPickerViewModel>(context, listen: false).originalList[0]);
+      }
+      Provider.of<SelectPickerViewModel>(context, listen: false).selectInitial(initialItem: widget.initialItem);
+    });
   }
 
   @override

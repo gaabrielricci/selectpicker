@@ -1,3 +1,9 @@
+## 1.0.3
+
+* Created styles to customize selectpicker.
+* Changed import package.
+* Corrections on parameters showId and selectFirst and initialItem.
+
 ## 1.0.2
 
 * Add example.dart link.

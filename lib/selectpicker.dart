@@ -20,19 +20,12 @@ class SelectPicker extends StatelessWidget {
     this.onSearch,
     this.onClose,
     this.inputError,
-    this.radius,
     this.hintSearch,
     this.showId,
     this.initialItem,
-    this.initialText,
     this.disabled,
-    this.height,
-    this.radiusPicker,
   });
 
-  final double? radius;
-  final double? radiusPicker;
-  final double? height;
   final String? inputError;
   final String? hintSearch;
   final String hint;
@@ -43,7 +36,6 @@ class SelectPicker extends StatelessWidget {
   final Function(SelectPickerIten) onSelect;
   final Future<List<SelectPickerIten>> Function(String? text)? onSearch;
   final Function()? onClose;
-  final String? initialText;
   final bool? disabled;
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle? selectPickerBottomSheetStyle;
@@ -62,14 +54,11 @@ class SelectPicker extends StatelessWidget {
           selectFirst: selectFirst,
           onSelect: onSelect,
           list: list,
-          maxHeight: height,
           hintSearch: hintSearch,
           showId: showId,
           onSearch: onSearch,
           initialItem: initialItem,
-          radiusPicker: radiusPicker,
           onClose: onClose,
-          initialText: initialText,
           disabled: disabled,
           inputError: inputError,
           selectPickerInputStyle: selectPickerInputStyle,
