@@ -42,9 +42,9 @@ class _TelaState extends State<Tela> {
             child: SelectPicker(
               hint: "Select an item",
               list: [
-                SelectPickerItem("title1", "id", null),
-                SelectPickerItem("title2", "id", null),
-                SelectPickerItem("title3", "id", null),
+                SelectPickerItem("Item 1", "1", null),
+                SelectPickerItem("Item 1", "2", null),
+                SelectPickerItem("Item 1", "3", null),
               ],
               selectFirst: true,
               showId: true,

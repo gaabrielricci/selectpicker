@@ -1,3 +1,11 @@
+## 1.0.5
+
+* Adjusted examples.
+
+## 1.0.4
+
+* spelling corrected.
+
 ## 1.0.3
 
 * Created styles to customize selectpicker.

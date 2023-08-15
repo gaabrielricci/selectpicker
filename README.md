@@ -25,14 +25,14 @@ And transform your list in a list of SelectPickerItem and call the SelectPicker
 SelectPicker(
         hint: "Select an item",
         list: [
-            SelectPickerItem("title1", "id", null),
-            SelectPickerItem("title2", "id", null),
-            SelectPickerItem("title3", "id", null),
+            SelectPickerItem("Item 1", "1", null),
+            SelectPickerItem("Item 1", "2", null),
+            SelectPickerItem("Item 1", "3", null),
         ],
         selectFirst: true,
         showId: true,
         onSelect: (value) {
-         if (mounted) {
+        if (mounted) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
           }
@@ -82,8 +82,7 @@ class _TelaState extends State<Tela> {
               selectFirst: false,
               onSelect: (value) {
                 ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(value.title.toString())));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
               },
               hintSearch: "Search by UF description or ID",
               selectPickerInputStyle: SelectPickerInputStyle(),
@@ -95,17 +94,16 @@ class _TelaState extends State<Tela> {
             child: SelectPicker(
               hint: "Select an item",
               list: [
-                SelectPickerItem("title1", "id", null),
-                SelectPickerItem("title2", "id", null),
-                SelectPickerItem("title3", "id", null),
+                SelectPickerItem("Item 1", "1", null),
+                SelectPickerItem("Item 1", "2", null),
+                SelectPickerItem("Item 1", "3", null),
               ],
               selectFirst: true,
               showId: true,
               onSelect: (value) {
                 if (mounted) {
                   ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(value.title.toString())));
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
                 }
               },
               hintSearch: "Search by item description or ID",
@@ -168,7 +166,6 @@ class Uf {
   String name;
   String uf;
 }
-
 
 
 ```
