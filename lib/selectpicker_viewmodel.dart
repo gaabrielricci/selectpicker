@@ -73,6 +73,10 @@ class SelectPickerViewModel with ChangeNotifier {
     }
   }
 
+  selectItem({required SelectPickerItem item}) {
+    selectedItem = "${showId ? "${item.id} - " : ""}${item.title}";
+  }
+
   reset() {
     searchController = TextEditingController();
     searchError = null;

@@ -50,23 +50,32 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   @override
   void initState() {
+    _animationController = BottomSheet.createAnimationController(this);
     _init();
     super.initState();
   }
 
   _init() {
-    _animationController = BottomSheet.createAnimationController(this);
+    if (widget.list.isNotEmpty) {
+      context.read<SelectPickerViewModel>().selectFirst = widget.selectFirst;
+      context.read<SelectPickerViewModel>().showId = widget.showId == true;
+      context.read<SelectPickerViewModel>().originalListDoNotNotify = widget.list;
 
-    Provider.of<SelectPickerViewModel>(context, listen: false).selectFirst = widget.selectFirst;
-    Provider.of<SelectPickerViewModel>(context, listen: false).showId = widget.showId == true;
-    Provider.of<SelectPickerViewModel>(context, listen: false).originalListDoNotNotify = widget.list;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (widget.selectFirst) {
+          widget.onSelect(context.read<SelectPickerViewModel>().originalList[0]);
+        }
+        context.read<SelectPickerViewModel>().selectInitial(initialItem: widget.initialItem);
+      });
+    }
+  }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widget.selectFirst) {
-        widget.onSelect(Provider.of<SelectPickerViewModel>(context, listen: false).originalList[0]);
-      }
-      Provider.of<SelectPickerViewModel>(context, listen: false).selectInitial(initialItem: widget.initialItem);
-    });
+  @override
+  void didUpdateWidget(covariant SelectPickerInput oldWidget) {
+    if (widget.list != context.read<SelectPickerViewModel>().originalList) {
+      _init();
+    }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override

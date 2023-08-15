@@ -14,7 +14,7 @@ class CardSelectPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<SelectPickerViewModel>().selectedItem = item.title;
+        context.read<SelectPickerViewModel>().selectItem(item: item);
         onCLick(item);
         Navigator.pop(context);
       },

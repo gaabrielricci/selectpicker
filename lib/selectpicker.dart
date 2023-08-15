@@ -45,9 +45,7 @@ class SelectPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider.value(
-          value: SelectPickerViewModel(),
-        ),
+        ChangeNotifierProvider(create: (context) => SelectPickerViewModel()),
       ],
       child: SelectPickerInput(
           hint: hint,
