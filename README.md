@@ -22,16 +22,17 @@ import 'package:selectpicker/selectpicker.dart';
 And transform your list in a list of SelectPickerIten and call the SelectPicker
 
 ```dart
-SelectPicker(
-        hint: "Select an item",
-        list: _myCustomList,
-        selectFirst: false,
-        onSelect: (value) {
-        ScaffoldMessenger.of(context).clearSnackBars();
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-        },
-        heightInput: 55,
-        hintSearch: "Serach by item description or ID",
+SelectPicker
+(
+hint: "Select an item",
+list: _myCustomList,
+selectFirst: false,
+onSelect: (value) {
+ScaffoldMessenger.of(context).clearSnackBars();
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+},
+heightInput: 55,
+hintSearch: "Serach by item description or ID",
 );
 ```
 
@@ -40,7 +41,7 @@ Enjoy.
 ## Usage
 
 This a simple screen with usage example.
-[example/example.dart](https://github.com/gaabrielricci/selectpicker)
+[example/example.dart](https://github.com/gaabrielricci/selectpicker/blob/main/lib/example/example.dart)
 
 ```dart
 import 'package:flutter/material.dart';

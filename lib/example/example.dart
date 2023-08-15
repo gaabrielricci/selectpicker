@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:selectpicker/models/inputStyle.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/selectpicker.dart';
 
@@ -31,10 +32,10 @@ class _TelaState extends State<Tela> {
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
               },
-              heightInput: 55,
               hintSearch: "Serach by UF description or ID",
               radius: 55,
               radiusPicker: 15,
+              selectPickerInputStyle: SelectPickerInputStyle(),
             ),
           ),
         ],
