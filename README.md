@@ -16,24 +16,23 @@ a simple way to create a selector with predefined options for the user
 Just import the package.
 
 ```dart
-import 'package:selectpicker/widgets/selectpicker.dart';
+import 'package:selectpicker/selectpicker.dart';
 ```
 
 And transform your list in a list of SelectPickerIten and call the SelectPicker
 
 ```dart
-SelectPicker
-(
-hint: "Select an item",
-list: _myCustomList,
-selectFirst: false,
-onSelect: (value) {
-ScaffoldMessenger.of(context).clearSnackBars();
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-},
-heightInput: 55,
-hintSearch: "Serach by item description or ID",
-)
+SelectPicker(
+        hint: "Select an item",
+        list: _myCustomList,
+        selectFirst: false,
+        onSelect: (value) {
+        ScaffoldMessenger.of(context).clearSnackBars();
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+        },
+        heightInput: 55,
+        hintSearch: "Serach by item description or ID",
+);
 ```
 
 Enjoy.
@@ -41,12 +40,12 @@ Enjoy.
 ## Usage
 
 This a simple screen with usage example.
-`/example/example.dart`
+[example/example.dart](https://github.com/gaabrielricci/selectpicker)
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
-import 'package:selectpicker/widgets/selectpicker.dart';
+import 'package:selectpicker/selectpicker.dart';
 
 class Tela extends StatefulWidget {
   const Tela({super.key});

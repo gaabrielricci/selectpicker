@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
-import 'package:selectpicker/widgets/selectpicker_viewmodel.dart';
+import 'package:selectpicker/selectpicker_viewmodel.dart';
 
 class SelectPickerInput extends StatefulWidget {
   const SelectPickerInput({

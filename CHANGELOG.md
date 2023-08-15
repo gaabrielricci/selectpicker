@@ -1,3 +1,8 @@
+## 1.0.2
+
+* Add example.dart link.
+* Changed import package.
+
 ## 1.0.1
 
 * Adjusted examples.

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/card_select_picker.dart';
 import 'package:selectpicker/widgets/input/input_no_border.dart';
-import 'package:selectpicker/widgets/selectpicker_viewmodel.dart';
+import 'package:selectpicker/selectpicker_viewmodel.dart';
 
 class SelectPickerBody extends StatefulWidget {
   const SelectPickerBody({
