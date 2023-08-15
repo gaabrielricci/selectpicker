@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selectpicker/models/inputStyle.dart';
+import 'package:selectpicker/styles/inputStyle.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/selectpicker.dart';
 

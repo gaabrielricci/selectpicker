@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SelectPickerBottomSheetStyle {
-  SelectPickerBottomSheetStyle({this.borderRadius, this.height, this.closeIconColor, this.iconSize});
+  SelectPickerBottomSheetStyle({
+    this.borderRadius = 25,
+    this.height,
+    this.closeIconColor = Colors.black87,
+    this.iconSize = 30,
+  });
 
-  Color? closeIconColor = Colors.black87;
-  double? iconSize = 30;
+  Color? closeIconColor;
+  double? iconSize;
   double? height;
-  double? borderRadius = 25;
+  double? borderRadius;
 }
