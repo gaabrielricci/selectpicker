@@ -1,3 +1,7 @@
+## 1.0.6
+
+* Important correction on selectPickerViewModel Provider.
+
 ## 1.0.5
 
 * Adjusted examples.
