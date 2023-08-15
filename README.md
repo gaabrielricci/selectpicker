@@ -44,7 +44,7 @@ SelectPicker(
 
 Enjoy.
 
-## Examplee
+## Example
 
 This a simple screen with usage example.
 [example/example.dart](https://github.com/gaabrielricci/selectpicker/blob/main/lib/example/example.dart)
