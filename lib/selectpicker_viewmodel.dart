@@ -33,6 +33,10 @@ class SelectPickerViewModel with ChangeNotifier {
   }
 
   selectInitial({String? initialItem}) {
+    if (initialItem == null || initialItem == "") {
+      selectedItem = "";
+      return;
+    }
     for (SelectPickerItem item in originalList) {
       if (item.id == initialItem) {
         selectedItem = "${showId ? "${item.id} - " : ""}${item.title}";

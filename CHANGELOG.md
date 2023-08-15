@@ -1,3 +1,7 @@
+## 1.0.7
+
+* Important correction on didUpdateWidget updating current selection.
+
 ## 1.0.6
 
 * Important correction on selectPickerViewModel Provider.
