@@ -22,18 +22,24 @@ import 'package:selectpicker/selectpicker.dart';
 And transform your list in a list of SelectPickerIten and call the SelectPicker
 
 ```dart
-SelectPicker
-(
-hint: "Select an item",
-list: _myCustomList,
-selectFirst: false,
-onSelect: (value) {
-ScaffoldMessenger.of(context).clearSnackBars();
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-},
-heightInput: 55,
-hintSearch: "Serach by item description or ID",
-);
+SelectPicker(
+        hint: "Select an item",
+        list: [
+            SelectPickerIten("title1", "id", null),
+            SelectPickerIten("title2", "id", null),
+            SelectPickerIten("title3", "id", null),
+        ],
+        selectFirst: true,
+        showId: true,
+        onSelect: (value) {
+         if (mounted) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+          }
+        },
+        hintSearch: "Serach by item description or ID",
+        selectPickerInputStyle: SelectPickerInputStyle(),
+)
 ```
 
 Enjoy.
@@ -47,6 +53,7 @@ This a simple screen with usage example.
 import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/selectpicker.dart';
+import 'package:selectpicker/styles/inputStyle.dart';
 
 class Tela extends StatefulWidget {
   const Tela({super.key});
@@ -60,7 +67,7 @@ class _TelaState extends State<Tela> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("SelectPicker - Ricci Mobile", style: TextStyle(color: Colors.white)),
+        title: const Text("SelectPicker", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.blue,
       ),
       body: Column(
@@ -70,18 +77,37 @@ class _TelaState extends State<Tela> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SelectPicker(
-              hint: "Select an item",
+              hint: "Select an UF",
               list: getStatesPicker(),
               selectFirst: false,
               onSelect: (value) {
                 ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(value.title.toString())));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
               },
-              heightInput: 55,
+              hintSearch: "Serach by UF description or ID",
+              selectPickerInputStyle: SelectPickerInputStyle(),
+              initialItem: "DF",
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SelectPicker(
+              hint: "Select an item",
+              list: [
+                SelectPickerIten("title1", "id", null),
+                SelectPickerIten("title2", "id", null),
+                SelectPickerIten("title3", "id", null),
+              ],
+              selectFirst: true,
+              showId: true,
+              onSelect: (value) {
+                if (mounted) {
+                  ScaffoldMessenger.of(context).clearSnackBars();
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+                }
+              },
               hintSearch: "Serach by item description or ID",
-              radius: 55,
-              radiusPicker: 15,
+              selectPickerInputStyle: SelectPickerInputStyle(),
             ),
           ),
         ],
@@ -140,6 +166,7 @@ class Uf {
   String name;
   String uf;
 }
+
 
 
 ```
