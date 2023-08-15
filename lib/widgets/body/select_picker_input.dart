@@ -82,7 +82,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                       : widget.selectPickerInputStyle.backgroundColor ?? Colors.white,
                   border: Border.all(
                       width: widget.selectPickerInputStyle.borderSize ?? 0,
-                      color: widget.selectPickerInputStyle.borderColor),
+                      color: widget.selectPickerInputStyle.borderColor ?? Colors.black87),
                   borderRadius: BorderRadius.all(
                     Radius.circular(widget.selectPickerInputStyle.borderRadius ?? 0.0),
                   ),
