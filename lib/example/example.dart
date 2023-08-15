@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/selectpicker.dart';
-import 'package:selectpicker/styles/inputStyle.dart';
+import 'package:selectpicker/styles/input_style.dart';
 
 class Tela extends StatefulWidget {
   const Tela({super.key});

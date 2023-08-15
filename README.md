@@ -53,7 +53,7 @@ This a simple screen with usage example.
 import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/selectpicker.dart';
-import 'package:selectpicker/styles/inputStyle.dart';
+import 'package:selectpicker/styles/input_style.dart';
 
 class Tela extends StatefulWidget {
   const Tela({super.key});
@@ -82,7 +82,8 @@ class _TelaState extends State<Tela> {
               selectFirst: false,
               onSelect: (value) {
                 ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(value.title.toString())));
               },
               hintSearch: "Serach by UF description or ID",
               selectPickerInputStyle: SelectPickerInputStyle(),
@@ -103,7 +104,8 @@ class _TelaState extends State<Tela> {
               onSelect: (value) {
                 if (mounted) {
                   ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(value.title.toString())));
                 }
               },
               hintSearch: "Serach by item description or ID",

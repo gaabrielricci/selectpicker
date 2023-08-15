@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:selectpicker/models/bottomSheetStyle.dart';
-import 'package:selectpicker/styles/inputSearchStyle.dart';
-import 'package:selectpicker/styles/inputStyle.dart';
+import 'package:selectpicker/styles/bottomsheet_style.dart';
+import 'package:selectpicker/styles/inputsearch_style.dart';
+import 'package:selectpicker/styles/input_style.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:selectpicker/models/bottomSheetStyle.dart';
-import 'package:selectpicker/styles/inputSearchStyle.dart';
+import 'package:selectpicker/styles/bottomsheet_style.dart';
+import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/card_select_picker.dart';
 import 'package:selectpicker/widgets/input/input_no_border.dart';

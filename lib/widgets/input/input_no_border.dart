@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:selectpicker/styles/inputSearchStyle.dart';
+import 'package:selectpicker/styles/inputsearch_style.dart';
 
 class SelectPickerInputNoBorder extends StatefulWidget {
   const SelectPickerInputNoBorder({
