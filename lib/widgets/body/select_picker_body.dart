@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
-import 'package:selectpicker/models/select_picker_iten.dart';
+import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/widgets/body/card_select_picker.dart';
 import 'package:selectpicker/widgets/input/input_no_border.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
@@ -21,8 +21,8 @@ class SelectPickerBody extends StatefulWidget {
 
   final String? hintSearch;
   final String hint;
-  final Future<List<SelectPickerIten>> Function(String? text)? onSearch;
-  final Function(SelectPickerIten) onSelect;
+  final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
+  final Function(SelectPickerItem) onSelect;
   final bool? showId;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
@@ -119,9 +119,9 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
               shrinkWrap: false,
               padding: const EdgeInsets.all(10),
               children: [
-                for (SelectPickerIten iten in context.watch<SelectPickerViewModel>().listToShow)
+                for (SelectPickerItem item in context.watch<SelectPickerViewModel>().listToShow)
                   CardSelectPicker(
-                    iten: iten,
+                    item: item,
                     onCLick: widget.onSelect,
                     showId: widget.showId == true,
                   )

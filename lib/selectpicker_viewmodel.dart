@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selectpicker/models/select_picker_iten.dart';
+import 'package:selectpicker/models/select_picker_item.dart';
 
 class SelectPickerViewModel with ChangeNotifier {
   TextEditingController searchController = TextEditingController();
@@ -7,8 +7,8 @@ class SelectPickerViewModel with ChangeNotifier {
   String? searchError;
   bool selectFirst = false;
   bool showId = false;
-  List<SelectPickerIten> _listToShow = [];
-  List<SelectPickerIten> _originalList = [];
+  List<SelectPickerItem> _listToShow = [];
+  List<SelectPickerItem> _originalList = [];
 
   set selectedItem(String item) {
     _selectedItem = item;
@@ -33,37 +33,37 @@ class SelectPickerViewModel with ChangeNotifier {
   }
 
   selectInitial({String? initialItem}) {
-    for (SelectPickerIten item in originalList) {
+    for (SelectPickerItem item in originalList) {
       if (item.id == initialItem) {
         selectedItem = "${showId ? "${item.id} - " : ""}${item.title}";
       }
     }
   }
 
-  set listToShow(List<SelectPickerIten> list) {
+  set listToShow(List<SelectPickerItem> list) {
     _listToShow = list;
     notifyListeners();
   }
 
-  set listToShowDoNotNotify(List<SelectPickerIten> list) {
+  set listToShowDoNotNotify(List<SelectPickerItem> list) {
     _listToShow = list;
   }
 
-  List<SelectPickerIten> get listToShow => _listToShow;
+  List<SelectPickerItem> get listToShow => _listToShow;
 
-  set originalList(List<SelectPickerIten> list) {
+  set originalList(List<SelectPickerItem> list) {
     _originalList = list;
     _listToShow = list;
     _selectFirst();
   }
 
-  set originalListDoNotNotify(List<SelectPickerIten> list) {
+  set originalListDoNotNotify(List<SelectPickerItem> list) {
     _originalList = list;
     listToShowDoNotNotify = list;
     _selectFirst();
   }
 
-  List<SelectPickerIten> get originalList => _originalList;
+  List<SelectPickerItem> get originalList => _originalList;
 
   _selectFirst() {
     if (selectFirst) {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:selectpicker/models/select_picker_iten.dart';
+import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/selectpicker.dart';
 import 'package:selectpicker/styles/input_style.dart';
 
@@ -32,7 +32,7 @@ class _TelaState extends State<Tela> {
                 ScaffoldMessenger.of(context).clearSnackBars();
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
               },
-              hintSearch: "Serach by UF description or ID",
+              hintSearch: "Search by UF description or ID",
               selectPickerInputStyle: SelectPickerInputStyle(),
               initialItem: "DF",
             ),
@@ -42,9 +42,9 @@ class _TelaState extends State<Tela> {
             child: SelectPicker(
               hint: "Select an item",
               list: [
-                SelectPickerIten("title1", "id", null),
-                SelectPickerIten("title2", "id", null),
-                SelectPickerIten("title3", "id", null),
+                SelectPickerItem("title1", "id", null),
+                SelectPickerItem("title2", "id", null),
+                SelectPickerItem("title3", "id", null),
               ],
               selectFirst: true,
               showId: true,
@@ -54,7 +54,7 @@ class _TelaState extends State<Tela> {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
                 }
               },
-              hintSearch: "Serach by item description or ID",
+              hintSearch: "Search by item description or ID",
               selectPickerInputStyle: SelectPickerInputStyle(),
             ),
           ),
@@ -95,11 +95,11 @@ class _TelaState extends State<Tela> {
     return list;
   }
 
-  static List<SelectPickerIten> getStatesPicker() {
+  static List<SelectPickerItem> getStatesPicker() {
     try {
-      List<SelectPickerIten> list = [];
+      List<SelectPickerItem> list = [];
       for (Uf item in getUf()) {
-        list.add(SelectPickerIten(item.name, item.uf, item));
+        list.add(SelectPickerItem(item.name, item.uf, item));
       }
       return list;
     } catch (error) {

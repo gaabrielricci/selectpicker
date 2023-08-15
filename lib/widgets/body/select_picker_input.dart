@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
-import 'package:selectpicker/models/select_picker_iten.dart';
+import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 
@@ -31,11 +31,11 @@ class SelectPickerInput extends StatefulWidget {
   final String hint;
   final bool? showId;
   final bool selectFirst;
-  final Function(SelectPickerIten) onSelect;
-  final Future<List<SelectPickerIten>> Function(String? text)? onSearch;
+  final Function(SelectPickerItem) onSelect;
+  final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
   final Function()? onClose;
   final bool? disabled;
-  final List<SelectPickerIten> list;
+  final List<SelectPickerItem> list;
   final String? initialItem;
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
