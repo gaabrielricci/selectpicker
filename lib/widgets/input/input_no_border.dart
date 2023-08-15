@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:selectpicker/models/inputSearchStyle.dart';
 
 class SelectPickerInputNoBorder extends StatefulWidget {
   const SelectPickerInputNoBorder({
     Key? key,
     required this.controller,
     required this.varErro,
+    required this.selectPickerInputSearchStyle,
     this.onChangeText,
     required this.label,
     this.labelColor,
@@ -34,6 +36,7 @@ class SelectPickerInputNoBorder extends StatefulWidget {
   final String? hint;
   final List<TextInputFormatter>? formatter;
   final Color? focusedColor;
+  final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
 
   @override
   State<SelectPickerInputNoBorder> createState() => _SelectPickerInputNoBorderState();
@@ -90,7 +93,8 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     return InputDecoration(
       filled: true,
       fillColor: Colors.white,
-      contentPadding: const EdgeInsets.fromLTRB(30, 10, 0, 10),
+      contentPadding: EdgeInsets.fromLTRB(30, (widget.selectPickerInputSearchStyle.height ?? 0) / 2, 0,
+          (widget.selectPickerInputSearchStyle.height ?? 0) / 2),
       suffixIcon: widget.password ? iconPassword() : null,
       labelStyle: TextStyle(color: widget.labelColor ?? Colors.grey),
       //labelText: widget.label,
@@ -124,7 +128,9 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
 
   OutlineInputBorder focusedBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.white),
+      borderSide: BorderSide(
+          color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
+          width: widget.selectPickerInputSearchStyle.borderSize ?? 0),
       borderRadius: BorderRadius.all(
         Radius.circular(
           widget.radius ?? 5,
@@ -135,7 +141,9 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
 
   OutlineInputBorder disabledBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.white),
+      borderSide: BorderSide(
+          color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
+          width: widget.selectPickerInputSearchStyle.borderSize ?? 0),
       borderRadius: BorderRadius.all(
         Radius.circular(
           widget.radius ?? 5,
@@ -146,7 +154,9 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
 
   OutlineInputBorder enableBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.white),
+      borderSide: BorderSide(
+          color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
+          width: widget.selectPickerInputSearchStyle.borderSize ?? 0),
       borderRadius: BorderRadius.all(
         Radius.circular(
           widget.radius ?? 5,
@@ -157,7 +167,9 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
 
   OutlineInputBorder errorBorder() {
     return OutlineInputBorder(
-        borderSide: const BorderSide(color: Colors.white),
+        borderSide: BorderSide(
+            color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
+            width: widget.selectPickerInputSearchStyle.borderSize ?? 0),
         borderRadius: BorderRadius.all(
           Radius.circular(
             widget.radius ?? 5,
@@ -167,7 +179,9 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
 
   OutlineInputBorder focusedErrorBorder() {
     return OutlineInputBorder(
-      borderSide: const BorderSide(color: Colors.white),
+      borderSide: BorderSide(
+          color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
+          width: widget.selectPickerInputSearchStyle.borderSize ?? 0),
       borderRadius: BorderRadius.all(
         Radius.circular(
           widget.radius ?? 5,

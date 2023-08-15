@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/models/bottomSheetStyle.dart';
+import 'package:selectpicker/models/inputSearchStyle.dart';
 import 'package:selectpicker/models/inputStyle.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
@@ -16,6 +17,7 @@ class SelectPickerInput extends StatefulWidget {
     required this.onSelect,
     required this.hint,
     required this.selectPickerBottomSheetStyle,
+    required this.selectPickerInputSearchStyle,
     this.radiusPicker,
     this.backgroundColor,
     this.hintSearch,
@@ -45,6 +47,7 @@ class SelectPickerInput extends StatefulWidget {
   final String? initialItem;
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
+  final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
 
   @override
   State<SelectPickerInput> createState() => _SelectPickerInputState();
@@ -109,18 +112,19 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        padding: const EdgeInsets.only(top: 5, bottom: 5),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
+                          borderRadius: BorderRadius.circular(10),
                           child: Container(
+                            width: widget.selectPickerInputStyle.spaceBarSize ?? 2,
                             color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                            width: widget.selectPickerInputStyle.spaceBarSize,
+                            child: const Text(""),
                           ),
                         ),
                       ),
                       Icon(
                         Icons.arrow_drop_down_sharp,
-                        size: widget.selectPickerInputStyle.iconSize,
+                        size: widget.selectPickerInputStyle.iconSize ?? 35,
                         color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
                       )
                     ],
@@ -143,7 +147,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   )),
                 ],
               )
-            : const SizedBox()
+            : const SizedBox(),
       ],
     );
   }
@@ -152,8 +156,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-            topRight: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius),
-            topLeft: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius),
+            topRight: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
+            topLeft: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
           ),
         ),
         isScrollControlled: true,
@@ -169,8 +173,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                 enableDrag: false,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius),
-                    topLeft: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius),
+                    topRight: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
+                    topLeft: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
                   ),
                 ),
                 onClosing: () {},
@@ -178,6 +182,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   return ChangeNotifierProvider.value(
                     value: Provider.of<SelectPickerViewModel>(context),
                     child: SelectPickerBody(
+                      selectPickerInputSearchStyle: widget.selectPickerInputSearchStyle,
                       selectPickerBottomSheetStyle: widget.selectPickerBottomSheetStyle,
                       hintSearch: widget.hintSearch,
                       hint: widget.hint,

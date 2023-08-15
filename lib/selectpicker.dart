@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/models/bottomSheetStyle.dart';
+import 'package:selectpicker/models/inputSearchStyle.dart';
 import 'package:selectpicker/models/inputStyle.dart';
 import 'package:selectpicker/models/select_picker_iten.dart';
 import 'package:selectpicker/widgets/body/select_picker_input.dart';
@@ -15,6 +16,7 @@ class SelectPicker extends StatelessWidget {
     required this.selectFirst,
     required this.onSelect,
     this.selectPickerBottomSheetStyle,
+    this.selectPickerInputSearchStyle,
     this.onSearch,
     this.onClose,
     this.inputError,
@@ -45,6 +47,7 @@ class SelectPicker extends StatelessWidget {
   final bool? disabled;
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle? selectPickerBottomSheetStyle;
+  final SelectPickerInputSearchStyle? selectPickerInputSearchStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -55,23 +58,23 @@ class SelectPicker extends StatelessWidget {
         ),
       ],
       child: SelectPickerInput(
-        hint: hint,
-        selectFirst: selectFirst,
-        onSelect: onSelect,
-        list: list,
-        maxHeight: height,
-        hintSearch: hintSearch,
-        showId: showId,
-        onSearch: onSearch,
-        initialItem: initialItem,
-        radiusPicker: radiusPicker,
-        onClose: onClose,
-        initialText: initialText,
-        disabled: disabled,
-        inputError: inputError,
-        selectPickerInputStyle: selectPickerInputStyle,
-        selectPickerBottomSheetStyle: selectPickerBottomSheetStyle ?? SelectPickerBottomSheetStyle(),
-      ),
+          hint: hint,
+          selectFirst: selectFirst,
+          onSelect: onSelect,
+          list: list,
+          maxHeight: height,
+          hintSearch: hintSearch,
+          showId: showId,
+          onSearch: onSearch,
+          initialItem: initialItem,
+          radiusPicker: radiusPicker,
+          onClose: onClose,
+          initialText: initialText,
+          disabled: disabled,
+          inputError: inputError,
+          selectPickerInputStyle: selectPickerInputStyle,
+          selectPickerBottomSheetStyle: selectPickerBottomSheetStyle ?? SelectPickerBottomSheetStyle(),
+          selectPickerInputSearchStyle: selectPickerInputSearchStyle ?? SelectPickerInputSearchStyle()),
     );
   }
 }
