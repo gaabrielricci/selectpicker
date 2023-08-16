@@ -102,7 +102,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
                     radius: widget.selectPickerInputSearchStyle.borderRadius,
                     onChangeText: (text) async {
                       if (widget.onSearch != null) {
-                        widget.onSearch!(text);
+                        context.read<SelectPickerViewModel>().listToShow = await widget.onSearch!(text);
                       } else {
                         context.read<SelectPickerViewModel>().search(text);
                       }
