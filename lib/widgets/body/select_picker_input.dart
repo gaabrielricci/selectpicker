@@ -125,7 +125,10 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                                   ? context.watch<SelectPickerViewModel>().selectedItem
                                   : widget.hint,
                               maxLines: 1,
-                              style: TextStyle(color: widget.selectPickerInputStyle.hintColor),
+                              style: TextStyle(
+                                  color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
+                                      ? widget.selectPickerInputStyle.textColor
+                                      : widget.selectPickerInputStyle.hintColor),
                             ),
                           ),
                         ),
