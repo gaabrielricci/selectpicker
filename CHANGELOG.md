@@ -1,3 +1,7 @@
+## 1.0.11
+
+* Adjusted hintColor property to inputStyle
+
 ## 1.0.10
 
 * Added hintColor property to inputStyle default grey
