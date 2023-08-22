@@ -5,6 +5,7 @@ class SelectPickerInputStyle {
     this.borderColor = Colors.black87,
     this.backgroundColor = Colors.white,
     this.textColor = Colors.black87,
+    this.hintColor = Colors.grey,
     this.height = 50,
     this.borderRadius = 50,
     this.errorColor = const Color(0xFFD32F2F),
@@ -17,6 +18,7 @@ class SelectPickerInputStyle {
   });
 
   Color? textColor;
+  Color? hintColor;
   Color? borderColor;
   Color? backgroundColor;
   Color? backgoundDisabledColor;

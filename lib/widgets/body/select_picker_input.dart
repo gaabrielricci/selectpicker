@@ -119,13 +119,15 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
                           child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
-                                    ? context.watch<SelectPickerViewModel>().selectedItem
-                                    : widget.hint,
-                                maxLines: 1,
-                              )),
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
+                                  ? context.watch<SelectPickerViewModel>().selectedItem
+                                  : widget.hint,
+                              maxLines: 1,
+                              style: TextStyle(color: widget.selectPickerInputStyle.hintColor),
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
