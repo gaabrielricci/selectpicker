@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
+import 'package:selectpicker/styles/card_item_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
@@ -10,13 +11,14 @@ import 'package:selectpicker/selectpicker_viewmodel.dart';
 class SelectPicker extends StatelessWidget {
   const SelectPicker({
     super.key,
-    required this.selectPickerInputStyle,
     required this.hint,
     required this.list,
     required this.selectFirst,
     required this.onSelect,
+    this.selectPickerInputStyle,
     this.selectPickerBottomSheetStyle,
     this.selectPickerInputSearchStyle,
+    this.selectPickerCardItemStyle,
     this.onSearch,
     this.onClose,
     this.inputError,
@@ -37,9 +39,10 @@ class SelectPicker extends StatelessWidget {
   final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
   final Function()? onClose;
   final bool? disabled;
-  final SelectPickerInputStyle selectPickerInputStyle;
+  final SelectPickerInputStyle? selectPickerInputStyle;
   final SelectPickerBottomSheetStyle? selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle? selectPickerInputSearchStyle;
+  final SelectPickerCardItemStyle? selectPickerCardItemStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +62,10 @@ class SelectPicker extends StatelessWidget {
           onClose: onClose,
           disabled: disabled,
           inputError: inputError,
-          selectPickerInputStyle: selectPickerInputStyle,
+          selectPickerInputStyle: selectPickerInputStyle ?? SelectPickerInputStyle(),
           selectPickerBottomSheetStyle: selectPickerBottomSheetStyle ?? SelectPickerBottomSheetStyle(),
-          selectPickerInputSearchStyle: selectPickerInputSearchStyle ?? SelectPickerInputSearchStyle()),
+          selectPickerInputSearchStyle: selectPickerInputSearchStyle ?? SelectPickerInputSearchStyle(),
+          selectPickerCardItemStyle: selectPickerCardItemStyle ?? SelectPickerCardItemStyle()),
     );
   }
 }

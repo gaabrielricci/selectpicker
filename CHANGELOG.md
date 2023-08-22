@@ -1,7 +1,9 @@
 ## 1.0.8
 
-* Added textColor property to inputStyle;
-
+* Added textColor property to inputStyle default black87
+* Added backgroundColor property to BottomSheetStyle default white70
+* Created CustomStyle for itens on list
+* 
 ## 1.0.8
 
 * Function onSearch, you can pass a function that will be executed in the onChangeText of the inputSearch of the selectpicker. This function must receive a nullable string and return a Future<List<SelectPickerItem>>

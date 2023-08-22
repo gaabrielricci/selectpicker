@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
+import 'package:selectpicker/styles/card_item_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/widgets/body/card_select_picker.dart';
@@ -16,6 +17,7 @@ class SelectPickerBody extends StatefulWidget {
     required this.onSelect,
     required this.selectPickerBottomSheetStyle,
     required this.selectPickerInputSearchStyle,
+    required this.selectPickerCardItemStyle,
     this.showId = false,
   });
 
@@ -26,6 +28,7 @@ class SelectPickerBody extends StatefulWidget {
   final bool? showId;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
+  final SelectPickerCardItemStyle selectPickerCardItemStyle;
 
   @override
   State<SelectPickerBody> createState() => _SelectPickerBodyState();
@@ -62,6 +65,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
                       child: Text(
                         widget.hint,
                         textAlign: TextAlign.left,
+                        style: TextStyle(color: widget.selectPickerInputSearchStyle.textColor,fontSize: 18),
                       ),
                     ),
                   ),
@@ -111,7 +115,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
                 )
               : const SizedBox(),
           Container(
-            color: Colors.grey[300] ?? Colors.grey,
+            color: widget.selectPickerCardItemStyle.dividerColor ?? Colors.grey,
             height: 2,
           ),
           Expanded(
@@ -121,6 +125,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
               children: [
                 for (SelectPickerItem item in context.watch<SelectPickerViewModel>().listToShow)
                   CardSelectPicker(
+                    selectPickerCardItemStyle: widget.selectPickerCardItemStyle,
                     item: item,
                     onCLick: widget.onSelect,
                     showId: widget.showId == true,

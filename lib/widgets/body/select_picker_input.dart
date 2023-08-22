@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
+import 'package:selectpicker/styles/card_item_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
@@ -17,6 +18,7 @@ class SelectPickerInput extends StatefulWidget {
     required this.hint,
     required this.selectPickerBottomSheetStyle,
     required this.selectPickerInputSearchStyle,
+    required this.selectPickerCardItemStyle,
     this.hintSearch,
     this.showId,
     this.onSearch,
@@ -40,6 +42,7 @@ class SelectPickerInput extends StatefulWidget {
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
+  final SelectPickerCardItemStyle selectPickerCardItemStyle;
 
   @override
   State<SelectPickerInput> createState() => _SelectPickerInputState();
@@ -168,6 +171,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   void showOptions() {
     showModalBottomSheet(
+        backgroundColor: widget.selectPickerBottomSheetStyle.backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
@@ -184,6 +188,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
           return SizedBox(
             height: widget.selectPickerBottomSheetStyle.height ?? (MediaQuery.of(context).size.height - 80),
             child: BottomSheet(
+                backgroundColor: widget.selectPickerBottomSheetStyle.backgroundColor,
                 enableDrag: false,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
@@ -196,6 +201,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   return ChangeNotifierProvider.value(
                     value: Provider.of<SelectPickerViewModel>(context),
                     child: SelectPickerBody(
+                      selectPickerCardItemStyle: widget.selectPickerCardItemStyle,
                       selectPickerInputSearchStyle: widget.selectPickerInputSearchStyle,
                       selectPickerBottomSheetStyle: widget.selectPickerBottomSheetStyle,
                       hintSearch: widget.hintSearch,
