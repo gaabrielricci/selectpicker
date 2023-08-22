@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 import 'package:selectpicker/styles/card_item_style.dart';
-import 'package:selectpicker/styles/inputsearch_style.dart';
 
 class CardSelectPicker extends StatelessWidget {
   const CardSelectPicker({
