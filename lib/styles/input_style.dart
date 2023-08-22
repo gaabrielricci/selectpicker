@@ -4,6 +4,7 @@ class SelectPickerInputStyle {
   SelectPickerInputStyle({
     this.borderColor = Colors.black87,
     this.backgroundColor = Colors.white,
+    this.textColor = Colors.black87,
     this.height = 50,
     this.borderRadius = 50,
     this.errorColor = const Color(0xFFD32F2F),
@@ -15,6 +16,7 @@ class SelectPickerInputStyle {
     this.iconSize = 40,
   });
 
+  Color? textColor;
   Color? borderColor;
   Color? backgroundColor;
   Color? backgoundDisabledColor;

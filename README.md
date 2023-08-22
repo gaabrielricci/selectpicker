@@ -10,7 +10,6 @@ a simple way to create a selector with predefined options for the user
 <img src="https://riccimobile.com.br/github/flutter/selectpicker/3.png" alt="Filter" style="flex: 1; padding: 10px;" width="324" height="720">
 <img src="https://riccimobile.com.br/github/flutter/selectpicker/4.png" alt="Select" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
-
 ## Getting started
 
 Just import the package.
