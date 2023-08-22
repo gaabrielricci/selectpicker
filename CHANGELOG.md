@@ -1,4 +1,4 @@
-## 1.0.8
+## 1.0.9
 
 * Added textColor property to inputStyle default black87
 * Added backgroundColor property to BottomSheetStyle default white70
