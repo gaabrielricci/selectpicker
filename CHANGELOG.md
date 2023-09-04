@@ -1,3 +1,7 @@
+## 1.0.12
+
+* Changed default color of bottomsheet background to Color(0xFAFAFAFF)
+
 ## 1.0.11
 
 * Adjusted hintColor property to inputStyle
