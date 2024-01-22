@@ -47,7 +47,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
             child: Row(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 1,
                   child: Align(
                     alignment: FractionalOffset.topCenter,
                     child: Padding(
@@ -57,7 +57,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
                   ),
                 ),
                 Expanded(
-                  flex: 9,
+                  flex: 10,
                   child: Align(
                     alignment: Alignment.center,
                     child: Padding(
@@ -65,28 +65,38 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
                       child: Text(
                         widget.hint,
                         textAlign: TextAlign.left,
-                        style: TextStyle(color: widget.selectPickerInputSearchStyle.textColor,fontSize: 18),
+                        style: TextStyle(
+                          color: widget.selectPickerInputSearchStyle.textColor,
+                          fontSize: 18,
+                          height: 1,
+                        ),
                       ),
                     ),
                   ),
                 ),
                 Expanded(
-                  flex: 3,
+                  flex: 2,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
                       alignment: Alignment.centerRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Center(
-                          child: Icon(
-                            Icons.close,
-                            color: widget.selectPickerBottomSheetStyle.closeIconColor,
-                            size: widget.selectPickerBottomSheetStyle.iconSize,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            borderRadius: BorderRadius.circular(50),
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Center(
+                              child: Icon(
+                                Icons.close,
+                                color: widget.selectPickerBottomSheetStyle.closeIconColor,
+                                size: widget.selectPickerBottomSheetStyle.iconSize,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
                   ),
@@ -98,6 +108,8 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
               ? Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 15),
                   child: SelectPickerInputNoBorder(
+                    labelColor: widget.selectPickerInputSearchStyle.textColor,
+                    backgroundColor: widget.selectPickerInputSearchStyle.backgroundColor,
                     selectPickerInputSearchStyle: widget.selectPickerInputSearchStyle,
                     controller: context.read<SelectPickerViewModel>().searchController,
                     varErro: context.read<SelectPickerViewModel>().searchError,
@@ -116,7 +128,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
               : const SizedBox(),
           Container(
             color: widget.selectPickerCardItemStyle.dividerColor ?? Colors.grey,
-            height: 2,
+            height: widget.selectPickerCardItemStyle.dividerHeight ?? 1,
           ),
           Expanded(
             child: ListView(
@@ -137,4 +149,7 @@ class _SelectPickerBodyState extends State<SelectPickerBody> {
       )),
     );
   }
+
+
+
 }

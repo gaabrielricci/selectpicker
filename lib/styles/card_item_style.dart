@@ -5,9 +5,11 @@ class SelectPickerCardItemStyle {
     this.dividerColor = Colors.black87,
     this.backgroundColor = Colors.white,
     this.textColor = Colors.black87,
+    this.dividerHeight = 1,
   });
 
   Color? dividerColor;
+  double? dividerHeight;
   Color? backgroundColor;
   Color? textColor;
 }

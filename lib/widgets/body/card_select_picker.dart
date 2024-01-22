@@ -20,17 +20,18 @@ class CardSelectPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        context.read<SelectPickerViewModel>().selectItem(item: item);
-        onCLick(item);
-        Navigator.pop(context);
-      },
-      child: (Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
+    return (Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: InkWell(
+                borderRadius: BorderRadius.circular(100),
+                onTap: () {
+                  context.read<SelectPickerViewModel>().selectItem(item: item);
+                  onCLick(item);
+                  Navigator.pop(context);
+                },
                 child: Padding(
                   padding: const EdgeInsets.all(15),
                   child: Text(
@@ -38,15 +39,15 @@ class CardSelectPicker extends StatelessWidget {
                     style: TextStyle(color: selectPickerCardItemStyle.textColor),
                   ),
                 ),
-              )
-            ],
-          ),
-          Divider(
-            height: 10,
-            color: selectPickerCardItemStyle.dividerColor,
-          )
-        ],
-      )),
-    );
+              ),
+            )
+          ],
+        ),
+        Divider(
+          height: 10,
+          color: selectPickerCardItemStyle.dividerColor,
+        )
+      ],
+    ));
   }
 }

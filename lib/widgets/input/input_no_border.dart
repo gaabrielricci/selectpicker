@@ -16,10 +16,10 @@ class SelectPickerInputNoBorder extends StatefulWidget {
     this.textInputType,
     this.textCapitalization,
     this.focus,
-    this.password = false,
     this.hint,
     this.formatter,
     this.focusedColor,
+    this.backgroundColor,
   }) : super(key: key);
 
   final String? varErro;
@@ -32,10 +32,10 @@ class SelectPickerInputNoBorder extends StatefulWidget {
   final TextInputType? textInputType;
   final TextCapitalization? textCapitalization;
   final FocusNode? focus;
-  final bool password;
   final String? hint;
   final List<TextInputFormatter>? formatter;
   final Color? focusedColor;
+  final Color? backgroundColor;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
 
   @override
@@ -43,13 +43,7 @@ class SelectPickerInputNoBorder extends StatefulWidget {
 }
 
 class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
-  late bool passwordVisible;
 
-  @override
-  void initState() {
-    passwordVisible = widget.password;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,12 +54,11 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
             Expanded(
               child: TextField(
                 inputFormatters: widget.formatter,
-                obscureText: passwordVisible,
                 focusNode: widget.focus,
                 autofocus: false,
                 onSubmitted: widget.onSubmit,
                 style: TextStyle(
-                  color: Colors.grey[800],
+                  color: widget.labelColor ?? Colors.grey[800],
                 ),
                 onChanged: widget.onChangeText,
                 controller: widget.controller,
@@ -89,44 +82,40 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
+  //define default decoration of input
   InputDecoration decoration() {
     return InputDecoration(
       filled: true,
-      fillColor: Colors.white,
+      fillColor: widget.backgroundColor ?? Colors.white,
       contentPadding: EdgeInsets.fromLTRB(30, (widget.selectPickerInputSearchStyle.height ?? 0) / 2, 0,
           (widget.selectPickerInputSearchStyle.height ?? 0) / 2),
-      suffixIcon: widget.password ? iconPassword() : null,
       labelStyle: TextStyle(color: widget.labelColor ?? Colors.grey),
       //labelText: widget.label,
       hintText: widget.hint,
       floatingLabelBehavior: FloatingLabelBehavior.always,
-      hintStyle: TextStyle(color: widget.labelColor ?? Colors.grey),
+      hintStyle: _hintStyle(),
       border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(widget.radius ?? 5))),
-      focusedErrorBorder: focusedErrorBorder(),
-      errorBorder: errorBorder(),
-      enabledBorder: enableBorder(),
-      focusedBorder: widget.varErro != null ? errorBorder() : focusedBorder(),
-      disabledBorder: disabledBorder(),
+      focusedErrorBorder: _focusedErrorBorder(),
+      errorBorder: _errorBorder(),
+      enabledBorder: _enableBorder(),
+      focusedBorder: widget.varErro != null ? _errorBorder() : _focusedBorder(),
+      disabledBorder: _disabledBorder(),
     );
   }
 
-  IconButton iconPassword() {
-    return IconButton(
-      icon: Icon(
-        // Based on passwordVisible state choose the icon
-        passwordVisible ? Icons.visibility : Icons.visibility_off,
-        color: Theme.of(context).primaryColorDark,
-      ),
-      onPressed: () {
-        // Update the state i.e. toogle the state of passwordVisible variable
-        setState(() {
-          passwordVisible = !passwordVisible;
-        });
-      },
-    );
+
+  //define style of hint
+  TextStyle _hintStyle() {
+    try {
+      return TextStyle(
+          color: widget.labelColor != null ? _createMaterialColor(widget.labelColor!)[100] : Colors.grey[100]);
+    } catch (er) {
+      return TextStyle(color: Colors.grey);
+    }
   }
 
-  OutlineInputBorder focusedBorder() {
+//default border style
+  OutlineInputBorder _focusedBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
           color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
@@ -139,7 +128,8 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  OutlineInputBorder disabledBorder() {
+  //border style of disabled input
+  OutlineInputBorder _disabledBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
           color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
@@ -152,7 +142,8 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  OutlineInputBorder enableBorder() {
+  //focused border style
+  OutlineInputBorder _enableBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
           color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
@@ -165,7 +156,8 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  OutlineInputBorder errorBorder() {
+  //error border style
+  OutlineInputBorder _errorBorder() {
     return OutlineInputBorder(
         borderSide: BorderSide(
             color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
@@ -176,8 +168,8 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
           ),
         ));
   }
-
-  OutlineInputBorder focusedErrorBorder() {
+//focused border style
+  OutlineInputBorder _focusedErrorBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
           color: widget.selectPickerInputSearchStyle.borderColor ?? Colors.white,
@@ -188,5 +180,26 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
         ),
       ),
     );
+  }
+
+  //create a material color to define hint faded of label color
+  MaterialColor _createMaterialColor(Color color) {
+    List strengths = <double>[.05];
+    Map<int, Color> swatch = {};
+    final int r = color.red, g = color.green, b = color.blue;
+
+    for (int i = 1; i < 10; i++) {
+      strengths.add(0.1 * i);
+    }
+    for (var strength in strengths) {
+      final double ds = 0.5 - strength;
+      swatch[(strength * 1000).round()] = Color.fromRGBO(
+        r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+        g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+        b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+        1,
+      );
+    }
+    return MaterialColor(color.value, swatch);
   }
 }

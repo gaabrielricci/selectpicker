@@ -1,3 +1,10 @@
+## 1.0.13
+
+* Improved search field style;
+* Visual improvement implemented in the item selection shadow;
+* Improved display of the selector title;
+* Removed unused code;
+
 ## 1.0.12
 
 * Changed default color of bottomsheet background to Color(0xFAFAFAFF)
@@ -18,7 +25,9 @@
 
 ## 1.0.8
 
-* Function onSearch, you can pass a function that will be executed in the onChangeText of the inputSearch of the selectpicker. This function must receive a nullable string and return a Future<List<SelectPickerItem>>
+* Function onSearch, you can pass a function that will be executed in the onChangeText of the
+  inputSearch of the selectpicker. This function must receive a nullable string and return a Future<
+  List<SelectPickerItem>>
 
 ## 1.0.7
 
