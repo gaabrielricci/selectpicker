@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
@@ -96,74 +97,77 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
         Row(
           children: [
             Expanded(
-              child: Container(
+              child: SizedBox(
                 height: widget.selectPickerInputStyle.height,
-                decoration: BoxDecoration(
+                child: Card(
                   color: widget.disabled == true
                       ? widget.selectPickerInputStyle.backgoundDisabledColor
                       : widget.selectPickerInputStyle.backgroundColor ?? Colors.white,
-                  border: Border.all(
-                      width: widget.selectPickerInputStyle.borderSize ?? 0,
-                      color: widget.selectPickerInputStyle.borderColor ?? Colors.black87),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(widget.selectPickerInputStyle.borderRadius ?? 0.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(widget.selectPickerInputStyle.borderRadius ?? 0.0),
+                    ),
+                    side: BorderSide(
+                        width: widget.selectPickerInputStyle.borderSize ?? 0,
+                        color: widget.selectPickerInputStyle.borderColor ?? Colors.black87),
                   ),
-                ),
-                child: InkWell(
-                  onTap: widget.disabled == true || widget.isLoading == true
-                      ? null
-                      : () {
-                          showOptions();
-                        },
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
-                                  ? context.watch<SelectPickerViewModel>().selectedItem
-                                  : widget.hint,
-                              maxLines: 1,
-                              style: TextStyle(
-                                  color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
-                                      ? widget.selectPickerInputStyle.textColor
-                                      : widget.selectPickerInputStyle.hintColor),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(widget.selectPickerInputStyle.borderRadius ?? 0.0),
+                    onTap: widget.disabled == true || widget.isLoading == true
+                        ? null
+                        : () {
+                            showOptions();
+                          },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
+                                    ? context.watch<SelectPickerViewModel>().selectedItem
+                                    : widget.hint,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
+                                        ? widget.selectPickerInputStyle.textColor
+                                        : widget.selectPickerInputStyle.hintColor),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5, bottom: 5),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Container(
-                            width: widget.selectPickerInputStyle.spaceBarSize ?? 2,
-                            color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                            child: const Text(""),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              width: widget.selectPickerInputStyle.spaceBarSize ?? 2,
+                              color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                              child: const Text(""),
+                            ),
                           ),
                         ),
-                      ),
-                      widget.isLoading == true
-                          ? SizedBox(
-                              width: 35,
-                              height: 35,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                        widget.isLoading == true
+                            ? SizedBox(
+                                width: 35,
+                                height: 35,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                                  ),
                                 ),
-                              ),
-                            )
-                          : Icon(
-                              Icons.arrow_drop_down_sharp,
-                              size: widget.selectPickerInputStyle.iconSize ?? 35,
-                              color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                            )
-                    ],
+                              )
+                            : Icon(
+                                Icons.arrow_drop_down_sharp,
+                                size: widget.selectPickerInputStyle.iconSize ?? 35,
+                                color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                              )
+                      ],
+                    ),
                   ),
                 ),
               ),
