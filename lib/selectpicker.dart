@@ -26,6 +26,7 @@ class SelectPicker extends StatelessWidget {
     this.showId,
     this.initialItem,
     this.disabled,
+    this.isLoading,
   });
 
   final String? inputError;
@@ -44,6 +45,8 @@ class SelectPicker extends StatelessWidget {
   final SelectPickerInputSearchStyle? selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle? selectPickerCardItemStyle;
 
+  final bool? isLoading;
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -51,6 +54,7 @@ class SelectPicker extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SelectPickerViewModel()),
       ],
       child: SelectPickerInput(
+          isLoading: isLoading,
           hint: hint,
           selectFirst: selectFirst,
           onSelect: onSelect,

@@ -26,6 +26,7 @@ class SelectPickerInput extends StatefulWidget {
     this.disabled,
     this.initialItem,
     this.inputError,
+    this.isLoading,
   });
 
   final String? inputError;
@@ -43,6 +44,7 @@ class SelectPickerInput extends StatefulWidget {
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
+  final bool? isLoading;
 
   @override
   State<SelectPickerInput> createState() => _SelectPickerInputState();
@@ -108,7 +110,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   ),
                 ),
                 child: InkWell(
-                  onTap: widget.disabled == true
+                  onTap: widget.disabled == true || widget.isLoading == true
                       ? null
                       : () {
                           showOptions();
@@ -144,11 +146,23 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                           ),
                         ),
                       ),
-                      Icon(
-                        Icons.arrow_drop_down_sharp,
-                        size: widget.selectPickerInputStyle.iconSize ?? 35,
-                        color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                      )
+                      widget.isLoading == true
+                          ? SizedBox(
+                              width: 35,
+                              height: 35,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                                ),
+                              ),
+                            )
+                          : Icon(
+                              Icons.arrow_drop_down_sharp,
+                              size: widget.selectPickerInputStyle.iconSize ?? 35,
+                              color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                            )
                     ],
                   ),
                 ),
@@ -183,15 +197,14 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
             topLeft: Radius.circular(widget.selectPickerBottomSheetStyle.borderRadius ?? 25),
           ),
         ),
-        isScrollControlled: true,
-        enableDrag: false,
+        enableDrag: true,
         isDismissible: true,
         context: context,
         showDragHandle: false,
         transitionAnimationController: _animationController,
+        useSafeArea: true,
         builder: (_) {
-          return SizedBox(
-            height: widget.selectPickerBottomSheetStyle.height ?? (MediaQuery.of(context).size.height - 80),
+          return SafeArea(
             child: BottomSheet(
                 backgroundColor: widget.selectPickerBottomSheetStyle.backgroundColor,
                 enableDrag: false,
