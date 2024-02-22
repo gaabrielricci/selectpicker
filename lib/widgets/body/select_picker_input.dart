@@ -194,6 +194,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   void showOptions() {
     showModalBottomSheet(
+        isScrollControlled: (widget.hintSearch != null && widget.hintSearch != ""),
         backgroundColor: widget.selectPickerBottomSheetStyle.backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -219,7 +220,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   ),
                 ),
                 onClosing: () {},
-                builder: (_) {
+                builder: (contexBuilder) {
                   return ChangeNotifierProvider.value(
                     value: Provider.of<SelectPickerViewModel>(context),
                     child: SelectPickerBody(

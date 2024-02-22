@@ -1,7 +1,12 @@
+## 1.0.15
+
+* Selector is no longer taking up the entire screen when there is little data.
+
 ## 1.0.14
 
-* It is possible to inform whether the selectPicker data is being loaded by the isLoading property. If loading, the selector cannot be opened.
-* Selector is no longer taking up the entire screen when there is little data. 
+* It is possible to inform whether the selectPicker data is being loaded by the isLoading property.
+  If loading, the selector cannot be opened.
+* Selector is no longer taking up the entire screen when there is little data.
 * Improved selector click.
 
 ## 1.0.13
