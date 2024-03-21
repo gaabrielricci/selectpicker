@@ -100,6 +100,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
               child: SizedBox(
                 height: widget.selectPickerInputStyle.height,
                 child: Card(
+                  elevation: widget.selectPickerInputStyle.elevation,
                   color: widget.disabled == true
                       ? widget.selectPickerInputStyle.backgoundDisabledColor
                       : widget.selectPickerInputStyle.backgroundColor ?? Colors.white,

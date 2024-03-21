@@ -1,3 +1,7 @@
+## 1.0.16
+
+* Elevation on input.
+
 ## 1.0.15
 
 * Selector is no longer taking up the entire screen when there is little data.
