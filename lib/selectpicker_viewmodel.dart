@@ -69,6 +69,26 @@ class SelectPickerViewModel with ChangeNotifier {
 
   List<SelectPickerItem> get originalList => _originalList;
 
+  String getHint(String hint, bool loading, String? loadingMessage) {
+    try {
+      if (loading == true) {
+        return loadingMessage ?? _defineMessage(hint);
+      } else {
+        return _defineMessage(hint);
+      }
+    } catch (e) {
+      return "";
+    }
+  }
+
+  String _defineMessage(String hint) {
+    try {
+      return selectedItem.isNotEmpty ? selectedItem : hint;
+    } catch (e) {
+      return "";
+    }
+  }
+
   _selectFirst() {
     if (selectFirst) {
       if (originalList.isNotEmpty) {

@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:selectpicker/models/select_picker_item.dart';
+import 'package:selectpicker/selectpicker_viewmodel.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
 import 'package:selectpicker/styles/card_item_style.dart';
-import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
-import 'package:selectpicker/models/select_picker_item.dart';
+import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
-import 'package:selectpicker/selectpicker_viewmodel.dart';
 
 class SelectPickerInput extends StatefulWidget {
   const SelectPickerInput({
@@ -28,6 +27,7 @@ class SelectPickerInput extends StatefulWidget {
     this.initialItem,
     this.inputError,
     this.isLoading,
+    this.loadingMessage,
   });
 
   final String? inputError;
@@ -46,6 +46,7 @@ class SelectPickerInput extends StatefulWidget {
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
   final bool? isLoading;
+  final String? loadingMessage;
 
   @override
   State<SelectPickerInput> createState() => _SelectPickerInputState();
@@ -127,9 +128,10 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
-                                context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
-                                    ? context.watch<SelectPickerViewModel>().selectedItem
-                                    : widget.hint,
+                                context
+                                    .watch<SelectPickerViewModel>()
+                                    .getHint(widget.hint, widget.isLoading==true, widget.loadingMessage),
+
                                 maxLines: 1,
                                 style: TextStyle(
                                     color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
@@ -163,8 +165,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                                 ),
                               )
                             : Icon(
-                                Icons.arrow_drop_down_sharp,
-                                size: widget.selectPickerInputStyle.iconSize ?? 35,
+                                Icons.arrow_drop_down_rounded,
+                                size: widget.selectPickerInputStyle.iconSize ?? 40,
                                 color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
                               )
                       ],
@@ -229,7 +231,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                       selectPickerInputSearchStyle: widget.selectPickerInputSearchStyle,
                       selectPickerBottomSheetStyle: widget.selectPickerBottomSheetStyle,
                       hintSearch: widget.hintSearch,
-                      hint: widget.hint,
+                      hint: widget.isLoading == true ? widget.loadingMessage ?? widget.hint : widget.hint,
                       onSearch: widget.onSearch,
                       onSelect: widget.onSelect,
                       showId: widget.showId,

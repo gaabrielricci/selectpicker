@@ -1,3 +1,7 @@
+## 1.0.17
+
+* Loading message.
+
 ## 1.0.16
 
 * Elevation on input.

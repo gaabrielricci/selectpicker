@@ -1,6 +1,6 @@
 name: selectpicker
 description: A simple package for creating a SelectPicker.
-version: 1.0.16
+version: 1.0.17
 homepage: https://www.riccimobile.com.br
 repository: https://github.com/gaabrielricci/selectpicker
 
@@ -11,7 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  provider: ^6.0.5
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
