@@ -4,4 +4,5 @@ class SelectPickerItem {
   String title = "";
   String id = "";
   dynamic object;
+  bool isChecked = false;
 }

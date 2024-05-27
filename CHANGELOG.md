@@ -1,3 +1,7 @@
+## 1.0.18
+
+* isChecked var in SelectPickerItem Model.
+
 ## 1.0.17
 
 * Loading message.
