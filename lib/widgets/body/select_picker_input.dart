@@ -24,10 +24,10 @@ class SelectPickerInput extends StatefulWidget {
     this.onSearch,
     this.onClose,
     this.disabled,
-    this.initialItem,
     this.inputError,
     this.isLoading,
     this.loadingMessage,
+    this.initialItem,
   });
 
   final String? inputError;
@@ -40,13 +40,13 @@ class SelectPickerInput extends StatefulWidget {
   final Function()? onClose;
   final bool? disabled;
   final List<SelectPickerItem> list;
-  final String? initialItem;
   final SelectPickerInputStyle selectPickerInputStyle;
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
   final bool? isLoading;
   final String? loadingMessage;
+  final String? initialItem;
 
   @override
   State<SelectPickerInput> createState() => _SelectPickerInputState();
@@ -79,7 +79,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   @override
   void didUpdateWidget(covariant SelectPickerInput oldWidget) {
-    if (widget.list != context.read<SelectPickerViewModel>().originalList) {
+    if (widget.list != context.read<SelectPickerViewModel>().originalList ||
+        widget.initialItem != oldWidget.initialItem) {
       _init();
     }
     super.didUpdateWidget(oldWidget);
@@ -130,8 +131,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                               child: Text(
                                 context
                                     .watch<SelectPickerViewModel>()
-                                    .getHint(widget.hint, widget.isLoading==true, widget.loadingMessage),
-
+                                    .getHint(widget.hint, widget.isLoading == true, widget.loadingMessage),
                                 maxLines: 1,
                                 style: TextStyle(
                                     color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty

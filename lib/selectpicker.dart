@@ -56,6 +56,7 @@ class SelectPicker extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SelectPickerViewModel()),
       ],
       child: SelectPickerInput(
+          initialItem: initialItem,
           loadingMessage: loadingMessage,
           isLoading: isLoading,
           hint: hint,
@@ -65,7 +66,6 @@ class SelectPicker extends StatelessWidget {
           hintSearch: hintSearch,
           showId: showId,
           onSearch: onSearch,
-          initialItem: initialItem,
           onClose: onClose,
           disabled: disabled,
           inputError: inputError,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
 
 class SelectPickerViewModel with ChangeNotifier {
+
   TextEditingController searchController = TextEditingController();
   String _selectedItem = "";
   String? searchError;
