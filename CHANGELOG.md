@@ -1,3 +1,7 @@
+## 1.0.19
+
+* Fix update initial item.
+
 ## 1.0.18
 
 * isChecked var in SelectPickerItem Model.
