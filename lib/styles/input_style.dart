@@ -14,8 +14,9 @@ class SelectPickerInputStyle {
     this.borderSize = 1,
     this.backgoundDisabledColor = const Color(0xFFD6D6D6),
     this.iconColorDisabled = Colors.black87,
-    this.iconSize = 40,
+    this.iconSize,
     this.elevation = 0,
+    this.fontSize,
   });
 
   Color? textColor;
@@ -32,4 +33,5 @@ class SelectPickerInputStyle {
   double? borderSize;
   double? borderRadius;
   double? elevation;
+  double? fontSize;
 }

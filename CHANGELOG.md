@@ -1,3 +1,8 @@
+## 1.0.20
+
+* Added fontSize on SelectPickerInputStyle;
+* Fix icon size on input.
+
 ## 1.0.19
 
 * Fix update initial item.

@@ -1,6 +1,6 @@
 name: selectpicker
 description: A simple package for creating a SelectPicker.
-version: 1.0.19
+version: 1.0.20
 homepage: https://www.riccimobile.com.br
 repository: https://github.com/gaabrielricci/selectpicker
 
@@ -16,7 +16,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

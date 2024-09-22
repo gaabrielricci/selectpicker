@@ -79,8 +79,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
 
   @override
   void didUpdateWidget(covariant SelectPickerInput oldWidget) {
-    if (widget.list != context.read<SelectPickerViewModel>().originalList ||
-        widget.initialItem != oldWidget.initialItem) {
+    if (widget.list != context.read<SelectPickerViewModel>().originalList || widget.initialItem != oldWidget.initialItem) {
       _init();
     }
     super.didUpdateWidget(oldWidget);
@@ -134,6 +133,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                                     .getHint(widget.hint, widget.isLoading == true, widget.loadingMessage),
                                 maxLines: 1,
                                 style: TextStyle(
+                                    fontSize: widget.selectPickerInputStyle.fontSize,
                                     color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
                                         ? widget.selectPickerInputStyle.textColor
                                         : widget.selectPickerInputStyle.hintColor),
@@ -154,8 +154,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                         ),
                         widget.isLoading == true
                             ? SizedBox(
-                                width: 35,
-                                height: 35,
+                                width: (widget.selectPickerInputStyle.height ?? 55) * 0.05,
+                                height: (widget.selectPickerInputStyle.height ?? 55) * 0.8,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CircularProgressIndicator(
@@ -166,7 +166,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                               )
                             : Icon(
                                 Icons.arrow_drop_down_rounded,
-                                size: widget.selectPickerInputStyle.iconSize ?? 40,
+                                size: widget.selectPickerInputStyle.iconSize ?? (widget.selectPickerInputStyle.height ?? 55) * 0.8,
                                 color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
                               )
                       ],
