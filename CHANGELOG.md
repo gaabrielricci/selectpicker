@@ -1,3 +1,13 @@
+## 1.1.0
+
+* SelectPickerBottomSheetStyle added property showSeparatorAboveTitle
+
+* SelectPickerCardItemStyle changed dividerColor to grey
+
+* Created TopSelectorStyle for style of bottomsheet top.
+
+* Recreated the top of bottomsheet
+
 ## 1.0.20
 
 * Added fontSize on SelectPickerInputStyle;

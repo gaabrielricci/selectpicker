@@ -5,6 +5,7 @@ import 'package:selectpicker/styles/card_item_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
+import 'package:selectpicker/styles/top_selector_style.dart';
 import 'package:selectpicker/widgets/body/select_picker_input.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 
@@ -19,6 +20,7 @@ class SelectPicker extends StatelessWidget {
     this.selectPickerBottomSheetStyle,
     this.selectPickerInputSearchStyle,
     this.selectPickerCardItemStyle,
+    this.selectPickerTopSelectorStyle,
     this.onSearch,
     this.onClose,
     this.inputError,
@@ -45,6 +47,7 @@ class SelectPicker extends StatelessWidget {
   final SelectPickerBottomSheetStyle? selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle? selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle? selectPickerCardItemStyle;
+  final SelectPickerTopSelectorStyle? selectPickerTopSelectorStyle;
 
   final bool? isLoading;
   final String? loadingMessage;
@@ -56,23 +59,25 @@ class SelectPicker extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SelectPickerViewModel()),
       ],
       child: SelectPickerInput(
-          initialItem: initialItem,
-          loadingMessage: loadingMessage,
-          isLoading: isLoading,
-          hint: hint,
-          selectFirst: selectFirst,
-          onSelect: onSelect,
-          list: list,
-          hintSearch: hintSearch,
-          showId: showId,
-          onSearch: onSearch,
-          onClose: onClose,
-          disabled: disabled,
-          inputError: inputError,
-          selectPickerInputStyle: selectPickerInputStyle ?? SelectPickerInputStyle(),
-          selectPickerBottomSheetStyle: selectPickerBottomSheetStyle ?? SelectPickerBottomSheetStyle(),
-          selectPickerInputSearchStyle: selectPickerInputSearchStyle ?? SelectPickerInputSearchStyle(),
-          selectPickerCardItemStyle: selectPickerCardItemStyle ?? SelectPickerCardItemStyle()),
+        initialItem: initialItem,
+        loadingMessage: loadingMessage,
+        isLoading: isLoading,
+        hint: hint,
+        selectFirst: selectFirst,
+        onSelect: onSelect,
+        list: list,
+        hintSearch: hintSearch,
+        showId: showId,
+        onSearch: onSearch,
+        onClose: onClose,
+        disabled: disabled,
+        inputError: inputError,
+        selectPickerInputStyle: selectPickerInputStyle ?? SelectPickerInputStyle(),
+        selectPickerBottomSheetStyle: selectPickerBottomSheetStyle ?? SelectPickerBottomSheetStyle(),
+        selectPickerInputSearchStyle: selectPickerInputSearchStyle ?? SelectPickerInputSearchStyle(),
+        selectPickerCardItemStyle: selectPickerCardItemStyle ?? SelectPickerCardItemStyle(),
+        selectPickertopSelectorStyle: selectPickerTopSelectorStyle ?? SelectPickerTopSelectorStyle(),
+      ),
     );
   }
 }

@@ -6,6 +6,7 @@ import 'package:selectpicker/styles/bottomsheet_style.dart';
 import 'package:selectpicker/styles/card_item_style.dart';
 import 'package:selectpicker/styles/input_style.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
+import 'package:selectpicker/styles/top_selector_style.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
 
 class SelectPickerInput extends StatefulWidget {
@@ -19,6 +20,7 @@ class SelectPickerInput extends StatefulWidget {
     required this.selectPickerBottomSheetStyle,
     required this.selectPickerInputSearchStyle,
     required this.selectPickerCardItemStyle,
+    required this.selectPickertopSelectorStyle,
     this.hintSearch,
     this.showId,
     this.onSearch,
@@ -44,6 +46,7 @@ class SelectPickerInput extends StatefulWidget {
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
+  final SelectPickerTopSelectorStyle selectPickertopSelectorStyle;
   final bool? isLoading;
   final String? loadingMessage;
   final String? initialItem;
@@ -227,6 +230,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                   return ChangeNotifierProvider.value(
                     value: Provider.of<SelectPickerViewModel>(context),
                     child: SelectPickerBody(
+                      topSelectorStyle: widget.selectPickertopSelectorStyle,
                       selectPickerCardItemStyle: widget.selectPickerCardItemStyle,
                       selectPickerInputSearchStyle: widget.selectPickerInputSearchStyle,
                       selectPickerBottomSheetStyle: widget.selectPickerBottomSheetStyle,
