@@ -5,7 +5,7 @@ class SelectPickerBottomSheetStyle {
     this.borderRadius = 15,
     this.height,
     this.closeIconColor = Colors.black87,
-    this.backgroundColor = const Color(0xFAFAFAFF),
+    this.backgroundColor = const Color(0xFFFFFFFF),
     this.iconSize = 30,
     this.showSeparatorAboveTitle = false,
   });

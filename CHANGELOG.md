@@ -1,3 +1,9 @@
+## 1.1.1
+
+* SelectPickerBottomSheetStyle backgroundColor default white
+
+* SelectPickerInputSearchStyle default color const Color(0xFFf2f2f2),
+
 ## 1.1.0
 
 * SelectPickerBottomSheetStyle added property showSeparatorAboveTitle
