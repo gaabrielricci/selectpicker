@@ -1,3 +1,7 @@
+## 1.1.2
+
+* Fix CircularProgressIndicator on isloading
+
 ## 1.1.1
 
 * SelectPickerBottomSheetStyle backgroundColor default white

@@ -157,8 +157,8 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                         ),
                         widget.isLoading == true
                             ? SizedBox(
-                                width: (widget.selectPickerInputStyle.height ?? 55) * 0.05,
-                                height: (widget.selectPickerInputStyle.height ?? 55) * 0.8,
+                                width: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
+                                height: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CircularProgressIndicator(
