@@ -128,7 +128,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: widget.selectPickerInputStyle.internalPadding ?? const EdgeInsets.fromLTRB(13, 10, 13, 10),
+                            padding: widget.selectPickerInputStyle.internalPadding ?? const EdgeInsets.fromLTRB(15, 10, 15, 10),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(

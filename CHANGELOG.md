@@ -1,3 +1,7 @@
+## 1.1.4
+
+* Default padding adjusted for input;
+
 ## 1.1.3
 
 * Included some properties on slectPickerInputStyle: TextStyle? hintStyle, TextStyle? textStyle,
