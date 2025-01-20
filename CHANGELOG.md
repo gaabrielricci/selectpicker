@@ -1,3 +1,8 @@
+## 1.1.3
+
+* Included some properties on slectPickerInputStyle: TextStyle? hintStyle, TextStyle? textStyle,
+  EdgeInsets? internalPadding, bool? showDropIndicator = true;
+
 ## 1.1.2
 
 * Fix CircularProgressIndicator on isloading

@@ -104,6 +104,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
               child: SizedBox(
                 height: widget.selectPickerInputStyle.height,
                 child: Card(
+                  margin: EdgeInsets.zero,
                   elevation: widget.selectPickerInputStyle.elevation,
                   color: widget.disabled == true
                       ? widget.selectPickerInputStyle.backgoundDisabledColor
@@ -127,7 +128,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(25, 10, 25, 10),
+                            padding: widget.selectPickerInputStyle.internalPadding ?? const EdgeInsets.fromLTRB(13, 10, 13, 10),
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -135,43 +136,43 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                                     .watch<SelectPickerViewModel>()
                                     .getHint(widget.hint, widget.isLoading == true, widget.loadingMessage),
                                 maxLines: 1,
-                                style: TextStyle(
-                                    fontSize: widget.selectPickerInputStyle.fontSize,
-                                    color: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
-                                        ? widget.selectPickerInputStyle.textColor
-                                        : widget.selectPickerInputStyle.hintColor),
+                                style: context.watch<SelectPickerViewModel>().selectedItem.isNotEmpty
+                                    ? widget.selectPickerInputStyle.textStyle
+                                    : widget.selectPickerInputStyle.hintStyle,
                               ),
                             ),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, bottom: 5),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              width: widget.selectPickerInputStyle.spaceBarSize ?? 2,
-                              color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                              child: const Text(""),
+                        if (widget.selectPickerInputStyle.showDropIndicator != false)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5, bottom: 5),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                width: widget.selectPickerInputStyle.spaceBarSize ?? 2,
+                                color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                                child: const Text(""),
+                              ),
                             ),
                           ),
-                        ),
-                        widget.isLoading == true
-                            ? SizedBox(
-                                width: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
-                                height: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                    color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                                  ),
-                                ),
-                              )
-                            : Icon(
-                                Icons.arrow_drop_down_rounded,
-                                size: widget.selectPickerInputStyle.iconSize ?? (widget.selectPickerInputStyle.height ?? 55) * 0.8,
+                        if (widget.isLoading == true)
+                          SizedBox(
+                            width: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
+                            height: (widget.selectPickerInputStyle.height ?? 55) * 0.6,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
                                 color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
-                              )
+                              ),
+                            ),
+                          ),
+                        if (widget.selectPickerInputStyle.showDropIndicator != false && widget.isLoading != true)
+                          Icon(
+                            Icons.arrow_drop_down_rounded,
+                            size: widget.selectPickerInputStyle.iconSize ?? (widget.selectPickerInputStyle.height ?? 55) * 0.8,
+                            color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
+                          )
                       ],
                     ),
                   ),

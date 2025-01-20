@@ -17,9 +17,15 @@ class SelectPickerInputStyle {
     this.iconSize,
     this.elevation = 0,
     this.fontSize,
+    this.hintStyle = const TextStyle(color: Colors.grey),
+    this.textStyle,
+    this.internalPadding,
+    this.showDropIndicator,
   });
 
+  @deprecated
   Color? textColor;
+  @deprecated
   Color? hintColor;
   Color? borderColor;
   Color? backgroundColor;
@@ -33,5 +39,10 @@ class SelectPickerInputStyle {
   double? borderSize;
   double? borderRadius;
   double? elevation;
+  @deprecated
   double? fontSize;
+  TextStyle? hintStyle;
+  TextStyle? textStyle;
+  EdgeInsets? internalPadding;
+  bool? showDropIndicator = true;
 }
