@@ -1,3 +1,7 @@
+## 1.1.5
+
+* Fix hintStyle;
+
 ## 1.1.4
 
 * Default padding adjusted for input;

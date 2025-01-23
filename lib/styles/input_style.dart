@@ -4,8 +4,6 @@ class SelectPickerInputStyle {
   SelectPickerInputStyle({
     this.borderColor = Colors.black87,
     this.backgroundColor = Colors.white,
-    this.textColor = Colors.black87,
-    this.hintColor = Colors.grey,
     this.height = 55,
     this.borderRadius = 50,
     this.errorColor = const Color(0xFFD32F2F),
@@ -16,17 +14,12 @@ class SelectPickerInputStyle {
     this.iconColorDisabled = Colors.black87,
     this.iconSize,
     this.elevation = 0,
-    this.fontSize,
-    this.hintStyle = const TextStyle(color: Colors.grey),
+    this.hintStyle,
     this.textStyle,
     this.internalPadding,
     this.showDropIndicator,
   });
 
-  @deprecated
-  Color? textColor;
-  @deprecated
-  Color? hintColor;
   Color? borderColor;
   Color? backgroundColor;
   Color? backgoundDisabledColor;
@@ -39,8 +32,6 @@ class SelectPickerInputStyle {
   double? borderSize;
   double? borderRadius;
   double? elevation;
-  @deprecated
-  double? fontSize;
   TextStyle? hintStyle;
   TextStyle? textStyle;
   EdgeInsets? internalPadding;
