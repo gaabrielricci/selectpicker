@@ -132,6 +132,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
+                                overflow: TextOverflow.ellipsis,
                                 context
                                     .watch<SelectPickerViewModel>()
                                     .getHint(widget.hint, widget.isLoading == true, widget.loadingMessage),
@@ -169,7 +170,7 @@ class _SelectPickerInputState extends State<SelectPickerInput> with SingleTicker
                           ),
                         if (widget.selectPickerInputStyle.showDropIndicator != false && widget.isLoading != true)
                           Icon(
-                            Icons.arrow_drop_down_rounded,
+                            widget.selectPickerInputStyle.iconDropDwon ?? Icons.arrow_drop_down_rounded,
                             size: widget.selectPickerInputStyle.iconSize ?? (widget.selectPickerInputStyle.height ?? 55) * 0.8,
                             color: widget.selectPickerInputStyle.iconColor ?? Colors.black87,
                           )

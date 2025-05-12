@@ -1,3 +1,7 @@
+## 1.1.6
+
+* Parameterized dropdown icon;
+
 ## 1.1.5
 
 * Fix hintStyle;

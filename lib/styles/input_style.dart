@@ -18,6 +18,7 @@ class SelectPickerInputStyle {
     this.textStyle,
     this.internalPadding,
     this.showDropIndicator,
+    this.iconDropDwon,
   });
 
   Color? borderColor;
@@ -25,6 +26,7 @@ class SelectPickerInputStyle {
   Color? backgoundDisabledColor;
   Color? iconColorDisabled;
   Color? iconColor;
+  IconData? iconDropDwon;
   Color? errorColor;
   double? spaceBarSize;
   double? iconSize;
