@@ -82,6 +82,11 @@ class SelectPickerNew<T> extends StatefulWidget {
   /// If null, default equality [==] is used.
   final bool Function(T a, T b)? compareFn;
 
+  /// An error message to display below the input field.
+  ///
+  /// If null, no error message is shown.
+  final String? errorText;
+
   /// Creates a new [SelectPickerNew] instance.
   const SelectPickerNew({
     Key? key,
@@ -99,6 +104,7 @@ class SelectPickerNew<T> extends StatefulWidget {
     this.emptyWidget,
     this.loadingWidget,
     this.compareFn,
+    this.errorText,
   }) : super(key: key);
 
   @override
@@ -187,6 +193,7 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
         child: InputDecorator(
           decoration: effectiveDecoration.copyWith(
             enabled: !widget.disabled,
+            errorText: widget.errorText,
             filled: false, // Set to false because Material handles the background now
             contentPadding: effectiveDecoration.contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             suffixIcon: effectiveDecoration.suffixIcon ?? Icon(

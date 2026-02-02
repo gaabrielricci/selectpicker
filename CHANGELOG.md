@@ -1,3 +1,7 @@
+## 2.0.1
+
+* **Validation Support**: Added `errorText` property to `SelectPickerNew` to display validation error messages below the input field.
+
 ## 2.0.0
 
 * **New Widget**: Introduced `SelectPickerNew<T>`, a generic, modern, and more flexible selector;
