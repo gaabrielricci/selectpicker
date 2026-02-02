@@ -108,7 +108,14 @@ class SelectPickerNew<T> extends StatefulWidget {
     this.loadingWidget,
     this.compareFn,
     this.errorText,
+    this.contentPadding,
   }) : super(key: key);
+
+  /// Custom padding inside the input field.
+  ///
+  /// If null, uses [decoration.contentPadding] or a default of
+  /// [EdgeInsets.symmetric(horizontal: 16, vertical: 12)].
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   State<SelectPickerNew<T>> createState() => _SelectPickerNewState<T>();
@@ -198,7 +205,9 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
             enabled: !widget.disabled,
             errorText: widget.errorText,
             filled: false, // Set to false because Material handles the background now
-            contentPadding: effectiveDecoration.contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            contentPadding: widget.contentPadding ?? 
+                effectiveDecoration.contentPadding ?? 
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             suffixIcon: effectiveDecoration.suffixIcon ?? Icon(
               Icons.keyboard_arrow_down_rounded,
               color: widget.disabled ? theme.disabledColor : theme.iconTheme.color,
