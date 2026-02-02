@@ -1,3 +1,10 @@
+## 2.0.2
+
+* **Documentation**: Acheived 100% public API documentation coverage.
+* **Example**: Moved example to the official directory structure and added a dedicated pubspec.
+* **Static Analysis**: Fixed all linting issues, missing type annotations, and deprecated member usages.
+* **Metadata**: Improved package description.
+
 ## 2.0.1
 
 * **Validation Support**: Added `errorText` property to `SelectPickerNew` to display validation error messages below the input field.

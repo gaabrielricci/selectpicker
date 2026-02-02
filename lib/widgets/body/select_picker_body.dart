@@ -9,7 +9,11 @@ import 'package:selectpicker/widgets/body/card_select_picker.dart';
 import 'package:selectpicker/widgets/input/input_no_border.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 
+/// The internal body of the legacy [SelectPicker] bottom sheet.
+///
+/// Contains the header, search input, and the list of items.
 class SelectPickerBody extends StatefulWidget {
+  /// Creates a [SelectPickerBody].
   const SelectPickerBody({
     super.key,
     required this.hintSearch,
@@ -23,14 +27,31 @@ class SelectPickerBody extends StatefulWidget {
     this.showId = false,
   });
 
+  /// The search input placeholder.
   final String? hintSearch;
+
+  /// The title/hint of the picker.
   final String hint;
+
+  /// Custom search function for asynchronous filtering.
   final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
+
+  /// Callback when an item is selected.
   final Function(SelectPickerItem) onSelect;
+
+  /// Whether to show the item ID.
   final bool? showId;
+
+  /// Style for the bottom sheet container.
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
+
+  /// Style for the internal search input.
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
+
+  /// Style for each item card.
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
+
+  /// Style for the top header area.
   final SelectPickerTopSelectorStyle topSelectorStyle;
 
   @override

@@ -1,3 +1,6 @@
+/// The modern implementation of the Select Picker.
+library select_picker_new;
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 

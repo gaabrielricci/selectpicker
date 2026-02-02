@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:selectpicker/styles/inputsearch_style.dart';
 
+/// A text field widget with no border used for search within the legacy [SelectPicker].
 class SelectPickerInputNoBorder extends StatefulWidget {
+  /// Creates a [SelectPickerInputNoBorder].
   const SelectPickerInputNoBorder({
     Key? key,
     required this.controller,
@@ -22,20 +24,49 @@ class SelectPickerInputNoBorder extends StatefulWidget {
     this.backgroundColor,
   }) : super(key: key);
 
+  /// An error message to display.
   final String? varErro;
+
+  /// Callback when text changes.
   final Function(String)? onChangeText;
+
+  /// Callback when submitted.
   final Function(String)? onSubmit;
+
+  /// The text controller.
   final TextEditingController controller;
+
+  /// The label text.
   final String? label;
+
+  /// The color of the label.
   final Color? labelColor;
+
+  /// The border radius.
   final double? radius;
+
+  /// The keyboard type.
   final TextInputType? textInputType;
+
+  /// The text capitalization style.
   final TextCapitalization? textCapitalization;
+
+  /// The focus node.
   final FocusNode? focus;
+
+  /// The hint text.
   final String? hint;
+
+  /// List of input formatters.
   final List<TextInputFormatter>? formatter;
+
+  /// The color when focused.
   final Color? focusedColor;
+
+  /// The background color.
   final Color? backgroundColor;
+
+  /// Style configuration for the search input.
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
 
   @override
@@ -43,8 +74,6 @@ class SelectPickerInputNoBorder extends StatefulWidget {
 }
 
 class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -82,7 +111,7 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  //define default decoration of input
+  /// Defines the decoration of the input field.
   InputDecoration decoration() {
     return InputDecoration(
       filled: true,
@@ -90,7 +119,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
       contentPadding: EdgeInsets.fromLTRB(30, (widget.selectPickerInputSearchStyle.height ?? 0) / 2, 0,
           (widget.selectPickerInputSearchStyle.height ?? 0) / 2),
       labelStyle: TextStyle(color: widget.labelColor ?? Colors.grey),
-      //labelText: widget.label,
       hintText: widget.hint,
       floatingLabelBehavior: FloatingLabelBehavior.always,
       hintStyle: _hintStyle(),
@@ -103,8 +131,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-
-  //define style of hint
   TextStyle _hintStyle() {
     try {
       return TextStyle(
@@ -114,7 +140,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     }
   }
 
-//default border style
   OutlineInputBorder _focusedBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -128,7 +153,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  //border style of disabled input
   OutlineInputBorder _disabledBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -142,7 +166,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  //focused border style
   OutlineInputBorder _enableBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -156,7 +179,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  //error border style
   OutlineInputBorder _errorBorder() {
     return OutlineInputBorder(
         borderSide: BorderSide(
@@ -168,7 +190,7 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
           ),
         ));
   }
-//focused border style
+
   OutlineInputBorder _focusedErrorBorder() {
     return OutlineInputBorder(
       borderSide: BorderSide(
@@ -182,16 +204,17 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
     );
   }
 
-  //create a material color to define hint faded of label color
   MaterialColor _createMaterialColor(Color color) {
-    List strengths = <double>[.05];
-    Map<int, Color> swatch = {};
-    final int r = color.red, g = color.green, b = color.blue;
+    final List<double> strengths = <double>[.05];
+    final Map<int, Color> swatch = {};
+    final int r = (color.r * 255.0).round().clamp(0, 255);
+    final int g = (color.g * 255.0).round().clamp(0, 255);
+    final int b = (color.b * 255.0).round().clamp(0, 255);
 
     for (int i = 1; i < 10; i++) {
       strengths.add(0.1 * i);
     }
-    for (var strength in strengths) {
+    for (double strength in strengths) {
       final double ds = 0.5 - strength;
       swatch[(strength * 1000).round()] = Color.fromRGBO(
         r + ((ds < 0 ? r : (255 - r)) * ds).round(),
@@ -200,6 +223,6 @@ class _SelectPickerInputNoBorderState extends State<SelectPickerInputNoBorder> {
         1,
       );
     }
-    return MaterialColor(color.value, swatch);
+    return MaterialColor(color.toARGB32(), swatch);
   }
 }

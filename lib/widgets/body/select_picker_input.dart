@@ -9,7 +9,11 @@ import 'package:selectpicker/styles/inputsearch_style.dart';
 import 'package:selectpicker/styles/top_selector_style.dart';
 import 'package:selectpicker/widgets/body/select_picker_body.dart';
 
+/// The input field widget for the legacy [SelectPicker].
+///
+/// This widget renders the button-like input that opens the selection bottom sheet.
 class SelectPickerInput extends StatefulWidget {
+  /// Creates a [SelectPickerInput].
   const SelectPickerInput({
     super.key,
     required this.list,
@@ -32,23 +36,58 @@ class SelectPickerInput extends StatefulWidget {
     this.initialItem,
   });
 
+  /// An error message to display below the input.
   final String? inputError;
+
+  /// The search input placeholder.
   final String? hintSearch;
+
+  /// The hint text shown when nothing is selected.
   final String hint;
+
+  /// Whether to show the item ID.
   final bool? showId;
+
+  /// Whether to automatically select the first item.
   final bool selectFirst;
+
+  /// Callback when an item is selected.
   final Function(SelectPickerItem) onSelect;
+
+  /// Custom search function for asynchronous filtering.
   final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
+
+  /// Callback executed when the picker sheet is closed.
   final Function()? onClose;
+
+  /// Whether the input is interactive.
   final bool? disabled;
+
+  /// The list of items to display.
   final List<SelectPickerItem> list;
+
+  /// Style configuration for the input field.
   final SelectPickerInputStyle selectPickerInputStyle;
+
+  /// Style configuration for the bottom sheet.
   final SelectPickerBottomSheetStyle selectPickerBottomSheetStyle;
+
+  /// Style configuration for the internal search input.
   final SelectPickerInputSearchStyle selectPickerInputSearchStyle;
+
+  /// Style configuration for each item card.
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
+
+  /// Style configuration for the top header area.
   final SelectPickerTopSelectorStyle selectPickertopSelectorStyle;
+
+  /// Whether the widget is in a loading state.
   final bool? isLoading;
+
+  /// Message to display while loading.
   final String? loadingMessage;
+
+  /// The initially selected item ID.
   final String? initialItem;
 
   @override

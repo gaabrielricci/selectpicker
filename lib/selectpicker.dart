@@ -1,3 +1,6 @@
+/// A modern and legacy Select Picker library for Flutter.
+library selectpicker;
+
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:selectpicker/styles/bottomsheet_style.dart';
@@ -10,6 +13,12 @@ import 'package:selectpicker/widgets/body/select_picker_input.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 
 export 'select_picker_new.dart';
+export 'models/select_picker_item.dart';
+export 'styles/bottomsheet_style.dart';
+export 'styles/card_item_style.dart';
+export 'styles/input_style.dart';
+export 'styles/inputsearch_style.dart';
+export 'styles/top_selector_style.dart';
 
 /// A legacy Select Picker widget.
 ///
@@ -40,24 +49,58 @@ class SelectPicker extends StatelessWidget {
     this.loadingMessage,
   });
 
+  /// The error message to display below the input field.
   final String? inputError;
+
+  /// The hint text for the search input in the bottom sheet.
   final String? hintSearch;
+
+  /// The primary hint text shown on the selector.
   final String hint;
+
+  /// The list of items available for selection.
   final List<SelectPickerItem> list;
+
+  /// The initially selected item ID.
   final String? initialItem;
+
+  /// Whether to display the item ID in the list.
   final bool? showId;
+
+  /// Whether to automatically select the first item.
   final bool selectFirst;
+
+  /// Callback executed when an item is selected.
   final Function(SelectPickerItem) onSelect;
+
+  /// Custom search function for asynchronous data loading.
   final Future<List<SelectPickerItem>> Function(String? text)? onSearch;
+
+  /// Callback executed when the picker sheet is closed.
   final Function()? onClose;
+
+  /// Whether the picker is interactive.
   final bool? disabled;
+
+  /// Customization style for the input field.
   final SelectPickerInputStyle? selectPickerInputStyle;
+
+  /// Customization style for the bottom sheet.
   final SelectPickerBottomSheetStyle? selectPickerBottomSheetStyle;
+
+  /// Customization style for the search input field.
   final SelectPickerInputSearchStyle? selectPickerInputSearchStyle;
+
+  /// Customization style for each item in the list.
   final SelectPickerCardItemStyle? selectPickerCardItemStyle;
+
+  /// Customization style for the top header of the bottom sheet.
   final SelectPickerTopSelectorStyle? selectPickerTopSelectorStyle;
 
+  /// Whether the widget is currently in a loading state.
   final bool? isLoading;
+
+  /// The message to display while loading.
   final String? loadingMessage;
 
   @override

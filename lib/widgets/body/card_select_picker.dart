@@ -4,7 +4,9 @@ import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 import 'package:selectpicker/styles/card_item_style.dart';
 
+/// A widget that renders a single selectable item in the legacy [SelectPicker] list.
 class CardSelectPicker extends StatelessWidget {
+  /// Creates a [CardSelectPicker].
   const CardSelectPicker({
     Key? key,
     required this.item,
@@ -13,9 +15,16 @@ class CardSelectPicker extends StatelessWidget {
     required this.selectPickerCardItemStyle,
   }) : super(key: key);
 
+  /// The item to display.
   final SelectPickerItem item;
+
+  /// Whether to display the item ID alongside the title.
   final bool showId;
+
+  /// Callback executed when the item is tapped.
   final Function(SelectPickerItem) onCLick;
+
+  /// Customization style for the card item.
   final SelectPickerCardItemStyle selectPickerCardItemStyle;
 
   @override
