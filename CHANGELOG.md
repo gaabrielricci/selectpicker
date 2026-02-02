@@ -1,3 +1,7 @@
+## 2.0.3
+
+* **README Update**: Modernized documentation with new API examples and features.
+
 ## 2.0.2
 
 * **Documentation**: Acheived 100% public API documentation coverage.

@@ -1,6 +1,15 @@
+# Select Picker
+
+A modern, generic, and highly customizable Select Picker for Flutter. Supports generic types, custom builders, asynchronous search, and validation with a premium look and feel.
+
 ## Features
 
-a simple way to create a selector with predefined options for the user
+- **Generic Support**: Works with any data type `T`.
+- **Modern UI**: Rounded bottom sheets, drag handles, and smooth animations.
+- **Asynchronous Search**: Support for remote data searching with debouncing.
+- **Custom Builders**: Fully customize how items look in the list.
+- **Validation**: Built-in support for `errorText`.
+- **Backward Compatibility**: Maintains support for legacy `SelectPicker`.
 
 ## Images
 
@@ -10,163 +19,87 @@ a simple way to create a selector with predefined options for the user
 <img src="https://riccimobile.com.br/github/flutter/selectpicker/3.png" alt="Filter" style="flex: 1; padding: 10px;" width="324" height="720">
 <img src="https://riccimobile.com.br/github/flutter/selectpicker/4.png" alt="Select" style="flex: 1; padding: 10px;" width="324" height="720">
 </div>
+
 ## Getting started
 
-Just import the package.
+Add the package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  selectpicker: ^2.0.2
+```
+
+Import the package:
 
 ```dart
 import 'package:selectpicker/selectpicker.dart';
 ```
 
-And transform your list in a list of SelectPickerItem and call the SelectPicker
+## Basic Usage (Modern API)
+
+The new `SelectPickerNew` is the recommended way to use the library.
 
 ```dart
-SelectPicker(
-        hint: "Select an item",
-        list: [
-            SelectPickerItem("Item 1", "1", null),
-            SelectPickerItem("Item 1", "2", null),
-            SelectPickerItem("Item 1", "3", null),
-        ],
-        selectFirst: true,
-        showId: true,
-        onSelect: (value) {
-        if (mounted) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-          }
-        },
-        hintSearch: "Search by item description or ID",
-        selectPickerInputStyle: SelectPickerInputStyle(),
+SelectPickerNew<String>(
+  items: ['Apple', 'Banana', 'Cherry'],
+  hint: "Select a fruit",
+  onChanged: (value) {
+    print("Selected: $value");
+  },
 )
 ```
 
-Enjoy.
+## Advanced Usage (Generic Objects)
+
+You can use complex objects by providing a `titleBuilder`.
+
+```dart
+SelectPickerNew<User>(
+  items: userList,
+  hint: "Select a user",
+  titleBuilder: (user) => user.name,
+  onChanged: (user) {
+    setState(() => _selectedUser = user);
+  },
+  decoration: InputDecoration(
+    border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+    prefixIcon: Icon(Icons.person),
+  ),
+  errorText: _hasError ? "Field is required" : null,
+)
+```
+
+## Asynchronous Search
+
+```dart
+SelectPickerNew<City>(
+  onSearch: (query) async {
+    return await api.fetchCities(query);
+  },
+  hint: "Search for a city",
+  titleBuilder: (city) => city.name,
+  onChanged: (city) => print(city?.name),
+)
+```
 
 ## Example
 
-This a simple screen with usage example.
-[example/example.dart](https://github.com/gaabrielricci/selectpicker/blob/main/lib/example/example.dart)
+Check out the full example in the [example directory](https://github.com/gaabrielricci/selectpicker/blob/main/example/lib/main.dart).
+
+## Legacy Usage
+
+For those still using the previous version, `SelectPicker` remains available for backward compatibility but is marked as deprecated.
 
 ```dart
-import 'package:flutter/material.dart';
-import 'package:selectpicker/models/select_picker_item.dart';
-import 'package:selectpicker/selectpicker.dart';
-import 'package:selectpicker/styles/input_style.dart';
-
-class Tela extends StatefulWidget {
-  const Tela({super.key});
-
-  @override
-  State<Tela> createState() => _TelaState();
-}
-
-class _TelaState extends State<Tela> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("SelectPicker", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blue,
-      ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SelectPicker(
-              hint: "Select an UF",
-              list: getStatesPicker(),
-              selectFirst: false,
-              onSelect: (value) {
-                ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-              },
-              hintSearch: "Search by UF description or ID",
-              selectPickerInputStyle: SelectPickerInputStyle(),
-              initialItem: "DF",
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SelectPicker(
-              hint: "Select an item",
-              list: [
-                SelectPickerItem("Item 1", "1", null),
-                SelectPickerItem("Item 1", "2", null),
-                SelectPickerItem("Item 1", "3", null),
-              ],
-              selectFirst: true,
-              showId: true,
-              onSelect: (value) {
-                if (mounted) {
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-                }
-              },
-              hintSearch: "Search by item description or ID",
-              selectPickerInputStyle: SelectPickerInputStyle(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  static List<Uf> getUf() {
-    List<Uf> list = [];
-    list.add(Uf("Acre", "AC"));
-    list.add(Uf("Alagoas", "AL"));
-    list.add(Uf("Amapá", "AP"));
-    list.add(Uf("Amazonas", "AM"));
-    list.add(Uf("Bahia", "BA"));
-    list.add(Uf("Ceará", "CE"));
-    list.add(Uf("Espírito Santo", "ES"));
-    list.add(Uf("Goiás", "GO"));
-    list.add(Uf("Maranhão", "MA"));
-    list.add(Uf("Mato Grosso", "MT"));
-    list.add(Uf("Mato Grosso do Sul", "MS"));
-    list.add(Uf("Minas Gerais", "MG"));
-    list.add(Uf("Pará", "PA"));
-    list.add(Uf("Paraíba", "PB"));
-    list.add(Uf("Paraná", "PR"));
-    list.add(Uf("Pernambuco", "PE"));
-    list.add(Uf("Piauí", "PI"));
-    list.add(Uf("Rio de Janeiro", "RJ"));
-    list.add(Uf("Rio Grande do Norte", "RN"));
-    list.add(Uf("Rio Grande do Sul", "RS"));
-    list.add(Uf("Rondônia", "RO"));
-    list.add(Uf("Roraima", "RR"));
-    list.add(Uf("Santa Catarina", "SC"));
-    list.add(Uf("São Paulo", "SP"));
-    list.add(Uf("Sergipe", "SE"));
-    list.add(Uf("Tocantins", "TO"));
-    list.add(Uf("Distrito Federal", "DF"));
-    return list;
-  }
-
-  static List<SelectPickerItem> getStatesPicker() {
-    try {
-      List<SelectPickerItem> list = [];
-      for (Uf item in getUf()) {
-        list.add(SelectPickerItem(item.name, item.uf, item));
-      }
-      return list;
-    } catch (error) {
-      return [];
-    }
-  }
-}
-
-class Uf {
-  Uf(this.name, this.uf);
-
-  String name;
-  String uf;
-}
-
-
+SelectPicker(
+  hint: "Select an item",
+  list: [
+    SelectPickerItem("Item 1", "1", null),
+    SelectPickerItem("Item 2", "2", null),
+  ],
+  selectFirst: true,
+  onSelect: (value) => print(value.title),
+)
 ```
 
 ## Credits
