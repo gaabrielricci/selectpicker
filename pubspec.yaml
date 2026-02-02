@@ -1,6 +1,6 @@
 name: selectpicker
 description: A modern, generic, and highly customizable Select Picker for Flutter. Supports generic types, custom builders, asynchronous search and more.
-version: 2.0.3
+version: 2.0.4
 homepage: https://www.riccimobile.com.br
 repository: https://github.com/gaabrielricci/selectpicker
 

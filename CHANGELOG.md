@@ -1,3 +1,7 @@
+## 2.0.4
+
+* **Decoration changed**: Default decoration contentPadding changed.
+
 ## 2.0.3
 
 * **README Update**: Modernized documentation with new API examples and features.
@@ -6,21 +10,27 @@
 
 * **Documentation**: Acheived 100% public API documentation coverage.
 * **Example**: Moved example to the official directory structure and added a dedicated pubspec.
-* **Static Analysis**: Fixed all linting issues, missing type annotations, and deprecated member usages.
+* **Static Analysis**: Fixed all linting issues, missing type annotations, and deprecated member
+  usages.
 * **Metadata**: Improved package description.
 
 ## 2.0.1
 
-* **Validation Support**: Added `errorText` property to `SelectPickerNew` to display validation error messages below the input field.
+* **Validation Support**: Added `errorText` property to `SelectPickerNew` to display validation
+  error messages below the input field.
 
 ## 2.0.0
 
 * **New Widget**: Introduced `SelectPickerNew<T>`, a generic, modern, and more flexible selector;
 * **Generics Support**: Now supports any data type `T` with `titleBuilder` and `itemBuilder`;
-* **Modern UI/UX**: Improved input field aesthetics, rounded bottom sheet with drag handle, and optimized InkWell ripple effects;
-* **Built-in Search**: Enhanced local filtering and support for asynchronous remote search (`onSearch`);
-* **Deprecation Notice**: Marked the legacy `SelectPicker` as deprecated in favor of the new generic implementation;
-* **Documentation**: Added comprehensive documentation comments to all public APIs for better pub.dev score and developer experience;
+* **Modern UI/UX**: Improved input field aesthetics, rounded bottom sheet with drag handle, and
+  optimized InkWell ripple effects;
+* **Built-in Search**: Enhanced local filtering and support for asynchronous remote search (
+  `onSearch`);
+* **Deprecation Notice**: Marked the legacy `SelectPicker` as deprecated in favor of the new generic
+  implementation;
+* **Documentation**: Added comprehensive documentation comments to all public APIs for better
+  pub.dev score and developer experience;
 * **Example**: Added a high-quality example demonstrating the new features.
 
 ## 1.1.6

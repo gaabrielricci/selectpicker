@@ -4,7 +4,6 @@ library select_picker_new;
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-
 /// A modern, generic Select Picker widget that supports any data type [T].
 ///
 /// This widget provides a cleaner interface, custom builders, and built-in search.
@@ -204,20 +203,19 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
           decoration: effectiveDecoration.copyWith(
             enabled: !widget.disabled,
             errorText: widget.errorText,
-            filled: false, // Set to false because Material handles the background now
-            contentPadding: widget.contentPadding ?? 
-                effectiveDecoration.contentPadding ?? 
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            suffixIcon: effectiveDecoration.suffixIcon ?? Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: widget.disabled ? theme.disabledColor : theme.iconTheme.color,
-            ),
+            filled: false,
+            // Set to false because Material handles the background now
+            contentPadding:
+                widget.contentPadding ?? effectiveDecoration.contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            suffixIcon: effectiveDecoration.suffixIcon ??
+                Icon(
+                  Icons.keyboard_arrow_down_rounded,
+                  color: widget.disabled ? theme.disabledColor : theme.iconTheme.color,
+                ),
           ),
           child: Text(
             displayText,
-            style: isPlaceholder
-                ? theme.textTheme.bodyLarge?.copyWith(color: theme.hintColor)
-                : theme.textTheme.bodyLarge,
+            style: isPlaceholder ? theme.textTheme.bodyLarge?.copyWith(color: theme.hintColor) : theme.textTheme.bodyLarge,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
@@ -339,10 +337,10 @@ class _SelectPickerSheetState<T> extends State<_SelectPickerSheet<T>> {
               ),
             ),
           ),
-          
+
           if (widget.showSearch)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
@@ -359,7 +357,7 @@ class _SelectPickerSheetState<T> extends State<_SelectPickerSheet<T>> {
                 onChanged: _onSearchChanged,
               ),
             ),
-          
+
           if (_isLoading)
             Expanded(
               child: Center(
@@ -369,15 +367,15 @@ class _SelectPickerSheetState<T> extends State<_SelectPickerSheet<T>> {
           else if (_filteredItems.isEmpty)
             Expanded(
               child: Center(
-                child: widget.emptyWidget ?? 
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.search_off_rounded, size: 48, color: theme.disabledColor),
-                      const SizedBox(height: 16),
-                      Text("No results found", style: theme.textTheme.bodyLarge?.copyWith(color: theme.disabledColor)),
-                    ],
-                  ),
+                child: widget.emptyWidget ??
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.search_off_rounded, size: 48, color: theme.disabledColor),
+                        const SizedBox(height: 16),
+                        Text("No results found", style: theme.textTheme.bodyLarge?.copyWith(color: theme.disabledColor)),
+                      ],
+                    ),
               ),
             )
           else
@@ -385,11 +383,12 @@ class _SelectPickerSheetState<T> extends State<_SelectPickerSheet<T>> {
               child: ListView.separated(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemCount: _filteredItems.length,
-                separatorBuilder: (context, index) => Divider(height: 1, indent: 16, endIndent: 16, color: theme.dividerColor.withValues(alpha: 0.1)),
+                separatorBuilder: (context, index) =>
+                    Divider(height: 1, indent: 16, endIndent: 16, color: theme.dividerColor.withValues(alpha: 0.1)),
                 itemBuilder: (context, index) {
                   final item = _filteredItems[index];
                   final isSelected = widget.selectedItem != null && widget.isEqual(item, widget.selectedItem as T);
-                  
+
                   if (widget.itemBuilder != null) {
                     return widget.itemBuilder!(context, item, isSelected, () => widget.onSelected(item));
                   }
