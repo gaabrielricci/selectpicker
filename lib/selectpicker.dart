@@ -9,7 +9,15 @@ import 'package:selectpicker/styles/top_selector_style.dart';
 import 'package:selectpicker/widgets/body/select_picker_input.dart';
 import 'package:selectpicker/selectpicker_viewmodel.dart';
 
+export 'select_picker_new.dart';
+
+/// A legacy Select Picker widget.
+///
+/// [SelectPicker] is now deprecated in favor of [SelectPickerNew], which offers
+/// a generic interface, better UI, and built-in search capabilities.
+@Deprecated('Use SelectPickerNew instead for a more flexible and modern interface.')
 class SelectPicker extends StatelessWidget {
+  /// Creates a [SelectPicker] instance.
   const SelectPicker({
     super.key,
     required this.hint,

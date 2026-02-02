@@ -1,116 +1,128 @@
 import 'package:flutter/material.dart';
-import 'package:selectpicker/models/select_picker_item.dart';
 import 'package:selectpicker/selectpicker.dart';
-import 'package:selectpicker/styles/input_style.dart';
 
-class Tela extends StatefulWidget {
-  const Tela({super.key});
-
-  @override
-  State<Tela> createState() => _TelaState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _TelaState extends State<Tela> {
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'SelectPicker Demo',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
+      ),
+      home: const SelectPickerExample(),
+    );
+  }
+}
+
+class SelectPickerExample extends StatefulWidget {
+  const SelectPickerExample({super.key});
+
+  @override
+  State<SelectPickerExample> createState() => _SelectPickerExampleState();
+}
+
+class _SelectPickerExampleState extends State<SelectPickerExample> {
+  String? _selectedFruit;
+  User? _selectedUser;
+
+  final List<String> _fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
+  final List<User> _users = [
+    User(id: 1, name: 'Gabriel Ricci'),
+    User(id: 2, name: 'John Doe'),
+    User(id: 3, name: 'Jane Smith'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("SelectPicker", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.blue,
+        title: const Text('SelectPickerNew Example'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SelectPicker(
-              hint: "Select an UF",
-              list: getStatesPicker(),
-              selectFirst: false,
-              onSelect: (value) {
-                ScaffoldMessenger.of(context).clearSnackBars();
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-              },
-              hintSearch: "Search by UF description or ID",
-              selectPickerInputStyle: SelectPickerInputStyle(),
-              initialItem: "DF",
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Simple String Selection',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SelectPicker(
-              hint: "Select an item",
-              list: [
-                SelectPickerItem("Item 1", "1", null),
-                SelectPickerItem("Item 1", "2", null),
-                SelectPickerItem("Item 1", "3", null),
-              ],
-              selectFirst: true,
-              showId: true,
-              onSelect: (value) {
-                if (mounted) {
-                  ScaffoldMessenger.of(context).clearSnackBars();
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(value.title.toString())));
-                }
+            const SizedBox(height: 12),
+            SelectPickerNew<String>(
+              items: _fruits,
+              initialValue: _selectedFruit,
+              hint: 'Select a fruit',
+              searchHint: 'Search fruits...',
+              onChanged: (value) {
+                setState(() {
+                  _selectedFruit = value;
+                });
               },
-              hintSearch: "Search by item description or ID",
-              selectPickerInputStyle: SelectPickerInputStyle(),
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                filled: true,
+                fillColor: Colors.grey[100],
+              ),
             ),
-          ),
-        ],
+            const SizedBox(height: 32),
+            const Text(
+              'Complex Object Selection',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+            SelectPickerNew<User>(
+              items: _users,
+              initialValue: _selectedUser,
+              hint: 'Select a user',
+              titleBuilder: (user) => user.name,
+              onChanged: (value) {
+                setState(() {
+                  _selectedUser = value;
+                });
+              },
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.person),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+            if (_selectedFruit != null || _selectedUser != null)
+              Card(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Selection Result:', style: TextStyle(fontWeight: FontWeight.bold)),
+                      if (_selectedFruit != null) Text('Fruit: $_selectedFruit'),
+                      if (_selectedUser != null) Text('User: ${_selectedUser?.name} (ID: ${_selectedUser?.id})'),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }
-
-  static List<Uf> getUf() {
-    List<Uf> list = [];
-    list.add(Uf("Acre", "AC"));
-    list.add(Uf("Alagoas", "AL"));
-    list.add(Uf("Amapá", "AP"));
-    list.add(Uf("Amazonas", "AM"));
-    list.add(Uf("Bahia", "BA"));
-    list.add(Uf("Ceará", "CE"));
-    list.add(Uf("Espírito Santo", "ES"));
-    list.add(Uf("Goiás", "GO"));
-    list.add(Uf("Maranhão", "MA"));
-    list.add(Uf("Mato Grosso", "MT"));
-    list.add(Uf("Mato Grosso do Sul", "MS"));
-    list.add(Uf("Minas Gerais", "MG"));
-    list.add(Uf("Pará", "PA"));
-    list.add(Uf("Paraíba", "PB"));
-    list.add(Uf("Paraná", "PR"));
-    list.add(Uf("Pernambuco", "PE"));
-    list.add(Uf("Piauí", "PI"));
-    list.add(Uf("Rio de Janeiro", "RJ"));
-    list.add(Uf("Rio Grande do Norte", "RN"));
-    list.add(Uf("Rio Grande do Sul", "RS"));
-    list.add(Uf("Rondônia", "RO"));
-    list.add(Uf("Roraima", "RR"));
-    list.add(Uf("Santa Catarina", "SC"));
-    list.add(Uf("São Paulo", "SP"));
-    list.add(Uf("Sergipe", "SE"));
-    list.add(Uf("Tocantins", "TO"));
-    list.add(Uf("Distrito Federal", "DF"));
-    return list;
-  }
-
-  static List<SelectPickerItem> getStatesPicker() {
-    try {
-      List<SelectPickerItem> list = [];
-      for (Uf item in getUf()) {
-        list.add(SelectPickerItem(item.name, item.uf, item));
-      }
-      return list;
-    } catch (error) {
-      return [];
-    }
-  }
 }
 
-class Uf {
-  Uf(this.name, this.uf);
+class User {
+  final int id;
+  final String name;
 
-  String name;
-  String uf;
+  User({required this.id, required this.name});
 }
