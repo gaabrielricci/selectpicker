@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:selectpicker/models/select_picker_item.dart';
+import 'package:selectpicker/utils/string_utils.dart';
 
 /// View model that manages the state of the legacy [SelectPicker].
 class SelectPickerViewModel with ChangeNotifier {
@@ -29,21 +29,6 @@ class SelectPickerViewModel with ChangeNotifier {
   /// Gets the currently selected item label.
   String get selectedItem => _selectedItem;
 
-  /// Normalizes a string by removing accents/diacritics.
-  /// 
-  /// This allows accent-insensitive searching. For example:
-  /// "Médico" becomes "Medico", "São Paulo" becomes "Sao Paulo"
-  String _normalizeString(String text) {
-    const withAccents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ';
-    const withoutAccents = 'AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn';
-    
-    String normalized = text;
-    for (int i = 0; i < withAccents.length; i++) {
-      normalized = normalized.replaceAll(withAccents[i], withoutAccents[i]);
-    }
-    return normalized;
-  }
-
   /// Filters the list based on the provided search text.
   /// 
   /// The search is case-insensitive and accent-insensitive, so searching for
@@ -55,12 +40,12 @@ class SelectPickerViewModel with ChangeNotifier {
       return;
     }
 
-    final normalizedSearch = _normalizeString(text.toUpperCase());
+    final normalizedSearch = text.toUpperCase().normalize();
 
     _listToShow = originalList
         .where((element) =>
-            _normalizeString(element.title.toUpperCase()).contains(normalizedSearch) ||
-            _normalizeString(element.id.toUpperCase()).contains(normalizedSearch))
+            element.title.toUpperCase().normalize().contains(normalizedSearch) ||
+            element.id.toUpperCase().normalize().contains(normalizedSearch))
         .toList();
     notifyListeners();
   }

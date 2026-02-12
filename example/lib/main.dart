@@ -32,11 +32,12 @@ class _SelectPickerExampleState extends State<SelectPickerExample> {
   String? _selectedFruit;
   User? _selectedUser;
 
-  final List<String> _fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
+  final List<String> _fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Médico', 'São Paulo'];
   final List<User> _users = [
     User(id: 1, name: 'Gabriel Ricci'),
     User(id: 2, name: 'John Doe'),
     User(id: 3, name: 'Jane Smith'),
+    User(id: 4, name: 'Aclécio Médico'),
   ];
 
   @override

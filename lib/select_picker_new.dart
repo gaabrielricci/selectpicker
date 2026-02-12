@@ -3,6 +3,7 @@ library select_picker_new;
 
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:selectpicker/utils/string_utils.dart';
 
 /// A modern, generic Select Picker widget that supports any data type [T].
 ///
@@ -299,8 +300,9 @@ class _SelectPickerSheetState<T> extends State<_SelectPickerSheet<T>> {
           setState(() => _filteredItems = widget.items);
         } else {
           setState(() {
+            final normalizedQuery = query.toLowerCase().normalize();
             _filteredItems = widget.items.where((item) {
-              return widget.titleBuilder(item).toLowerCase().contains(query.toLowerCase());
+              return widget.titleBuilder(item).toLowerCase().normalize().contains(normalizedQuery);
             }).toList();
           });
         }

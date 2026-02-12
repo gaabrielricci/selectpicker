@@ -1,3 +1,7 @@
+## 2.0.6
+
+* **Search Logic**: Centralized string normalization in a shared utility and ensured accent-insensitive searching for both `SelectPickerNew` and legacy `SelectPicker`.
+
 ## 2.0.5
 
 * **Search Enhancement**: Fixed search to support accent-insensitive filtering. Now searching for "medi" will correctly match "Médico", "São Paulo" will match "sao paulo", etc.
