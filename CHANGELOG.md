@@ -1,3 +1,11 @@
+## 2.0.8
+
+* **Bug Fix**: Fixed missing `material.dart` import in `SelectPickerViewModel` that caused build errors.
+
+## 2.0.7
+
+* **Simplified Loading**: Added `isLoading` and `loadingMessage` properties to `SelectPickerNew` to match legacy `SelectPicker` behavior. It now displays a built-in spinner and custom message without requiring a `loadingWidget`.
+
 ## 2.0.6
 
 * **Search Logic**: Centralized string normalization in a shared utility and ensured accent-insensitive searching for both `SelectPickerNew` and legacy `SelectPicker`.

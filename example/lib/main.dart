@@ -31,6 +31,7 @@ class SelectPickerExample extends StatefulWidget {
 class _SelectPickerExampleState extends State<SelectPickerExample> {
   String? _selectedFruit;
   User? _selectedUser;
+  bool _isLoading = false;
 
   final List<String> _fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Médico', 'São Paulo'];
   final List<User> _users = [
@@ -57,11 +58,19 @@ class _SelectPickerExampleState extends State<SelectPickerExample> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
+            SwitchListTile(
+              title: const Text('Simulate Loading State'),
+              value: _isLoading,
+              onChanged: (value) => setState(() => _isLoading = value),
+            ),
+            const SizedBox(height: 12),
             SelectPickerNew<String>(
               items: _fruits,
               initialValue: _selectedFruit,
               hint: 'Select a fruit',
               searchHint: 'Search fruits...',
+              isLoading: _isLoading,
+              loadingMessage: 'Loading fruits...',
               onChanged: (value) {
                 setState(() {
                   _selectedFruit = value;

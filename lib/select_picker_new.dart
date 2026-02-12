@@ -79,6 +79,12 @@ class SelectPickerNew<T> extends StatefulWidget {
   /// A widget to display while an asynchronous search is in progress.
   final Widget? loadingWidget;
 
+  /// Whether the widget is currently in a loading state.
+  final bool isLoading;
+
+  /// The message to display while loading.
+  final String? loadingMessage;
+
   /// A custom function to determine if two items are equal.
   ///
   /// Used to highlight the currently selected item in the list.
@@ -106,9 +112,10 @@ class SelectPickerNew<T> extends StatefulWidget {
     this.decoration,
     this.emptyWidget,
     this.loadingWidget,
-    this.compareFn,
     this.errorText,
     this.contentPadding,
+    this.isLoading = false,
+    this.loadingMessage,
   }) : super(key: key);
 
   /// Custom padding inside the input field.
@@ -184,8 +191,12 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final displayText = _selectedItem != null ? _getItemTitle(_selectedItem as T) : widget.hint;
     final isPlaceholder = _selectedItem == null;
+    final isLoading = widget.isLoading;
+
+    final displayText = isLoading
+        ? (widget.loadingMessage ?? widget.hint)
+        : (_selectedItem != null ? _getItemTitle(_selectedItem as T) : widget.hint);
 
     final effectiveDecoration = (widget.decoration ?? const InputDecoration());
     final effectiveFillColor = effectiveDecoration.filled == true ? effectiveDecoration.fillColor : null;
@@ -196,7 +207,7 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
           ? (effectiveDecoration.border as OutlineInputBorder).borderRadius
           : BorderRadius.circular(12),
       child: InkWell(
-        onTap: widget.disabled ? null : _showSelector,
+        onTap: widget.disabled || isLoading ? null : _showSelector,
         borderRadius: effectiveDecoration.border?.isOutline == true && effectiveDecoration.border is OutlineInputBorder
             ? (effectiveDecoration.border as OutlineInputBorder).borderRadius
             : BorderRadius.circular(12),
@@ -208,11 +219,23 @@ class _SelectPickerNewState<T> extends State<SelectPickerNew<T>> {
             // Set to false because Material handles the background now
             contentPadding:
                 widget.contentPadding ?? effectiveDecoration.contentPadding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            suffixIcon: effectiveDecoration.suffixIcon ??
-                Icon(
-                  Icons.keyboard_arrow_down_rounded,
-                  color: widget.disabled ? theme.disabledColor : theme.iconTheme.color,
-                ),
+            suffixIcon: isLoading
+                ? SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: effectiveDecoration.suffixIconColor ?? theme.primaryColor,
+                      ),
+                    ),
+                  )
+                : (effectiveDecoration.suffixIcon ??
+                    Icon(
+                      Icons.keyboard_arrow_down_rounded,
+                      color: widget.disabled ? theme.disabledColor : theme.iconTheme.color,
+                    )),
           ),
           child: Text(
             displayText,
