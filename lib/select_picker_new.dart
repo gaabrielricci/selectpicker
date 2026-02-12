@@ -112,6 +112,7 @@ class SelectPickerNew<T> extends StatefulWidget {
     this.decoration,
     this.emptyWidget,
     this.loadingWidget,
+    this.compareFn,
     this.errorText,
     this.contentPadding,
     this.isLoading = false,

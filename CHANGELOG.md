@@ -1,5 +1,5 @@
 ## 2.0.8
-
+* **Bug Fix**: Fixed uninitialized `compareFn` variable in `SelectPickerNew` constructor.
 * **Bug Fix**: Fixed missing `material.dart` import in `SelectPickerViewModel` that caused build errors.
 
 ## 2.0.7
