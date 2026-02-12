@@ -29,7 +29,25 @@ class SelectPickerViewModel with ChangeNotifier {
   /// Gets the currently selected item label.
   String get selectedItem => _selectedItem;
 
+  /// Normalizes a string by removing accents/diacritics.
+  /// 
+  /// This allows accent-insensitive searching. For example:
+  /// "Médico" becomes "Medico", "São Paulo" becomes "Sao Paulo"
+  String _normalizeString(String text) {
+    const withAccents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÖØòóôõöøÈÉÊËèéêëÇçÌÍÎÏìíîïÙÚÛÜùúûüÿÑñ';
+    const withoutAccents = 'AAAAAAaaaaaaOOOOOOooooooEEEEeeeeCcIIIIiiiiUUUUuuuuyNn';
+    
+    String normalized = text;
+    for (int i = 0; i < withAccents.length; i++) {
+      normalized = normalized.replaceAll(withAccents[i], withoutAccents[i]);
+    }
+    return normalized;
+  }
+
   /// Filters the list based on the provided search text.
+  /// 
+  /// The search is case-insensitive and accent-insensitive, so searching for
+  /// "medi" will match "Médico", "medico", "MEDICO", etc.
   void search(String? text) {
     if (text == null || text.isEmpty) {
       _listToShow = originalList;
@@ -37,10 +55,12 @@ class SelectPickerViewModel with ChangeNotifier {
       return;
     }
 
+    final normalizedSearch = _normalizeString(text.toUpperCase());
+
     _listToShow = originalList
         .where((element) =>
-            element.title.toUpperCase().contains(text.toUpperCase()) ||
-            element.id.toUpperCase().contains(text.toUpperCase()))
+            _normalizeString(element.title.toUpperCase()).contains(normalizedSearch) ||
+            _normalizeString(element.id.toUpperCase()).contains(normalizedSearch))
         .toList();
     notifyListeners();
   }

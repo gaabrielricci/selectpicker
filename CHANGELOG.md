@@ -1,3 +1,7 @@
+## 2.0.5
+
+* **Search Enhancement**: Fixed search to support accent-insensitive filtering. Now searching for "medi" will correctly match "Médico", "São Paulo" will match "sao paulo", etc.
+
 ## 2.0.4
 
 * **Decoration changed**: Default decoration contentPadding changed.
